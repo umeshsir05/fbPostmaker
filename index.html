@@ -192,10 +192,10 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - REDUCED HEIGHT, LARGER SCHOOL NAME ADJUSTED ========= */
+    /* ========= HEADER SECTION - LOGO NOW 55px, TEXT ADJUSTED ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 6px 12px;        /* slight increase to accommodate possible text wrap */
+      padding: 6px 12px;        /* balanced padding with smaller logo */
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -205,10 +205,10 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px;
+      gap: 10px;                /* reduced gap from 12px to 10px for better alignment */
     }
 
-    /* Logo container - larger and clearer */
+    /* Logo container - now 55px */
     .logo-container {
       flex-shrink: 0;
       display: flex;
@@ -218,8 +218,8 @@
     }
 
     .school-logo {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
       object-fit: contain;
       display: block;
       background: transparent;
@@ -233,8 +233,8 @@
     }
 
     .logo-fallback {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
       background: #f7c35c;
       color: #0a2f4d;
       display: flex;
@@ -242,7 +242,7 @@
       justify-content: center;
       font-weight: bold;
       border-radius: 8px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     /* Title section - flexible to handle larger school name */
@@ -255,15 +255,15 @@
 
     /* SCHOOL NAME - larger, responsive, wraps if needed */
     .school-name {
-      font-size: 36px;  /* larger but scales on small screens */
+      font-size: clamp(1.2rem, 5vw, 1.7rem);  /* slightly reduced max for balance with 55px logo */
       font-weight: 900;
-      line-height: 55;
+      line-height: 1.2;
       text-transform: uppercase;
       margin-bottom: 2px;
-      white-space: normal;          /* allow wrapping to avoid overflow */
+      white-space: normal;
       word-break: break-word;
       display: block;
-      text-align: center;
+      text-align: left;
     }
 
     /* Affiliation line - stays separate, can also wrap if needed */
@@ -402,7 +402,7 @@
       opacity: 0.9;
     }
 
-    /* ========= MOBILE ADJUSTMENTS: ensure school name scales well ========= */
+    /* ========= MOBILE ADJUSTMENTS: logo scales to 45px for balance ========= */
     @media (max-width: 550px) {
       body {
         padding: 0.8rem;
@@ -411,12 +411,11 @@
         padding: 1rem;
       }
       .school-logo, .logo-fallback {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
       }
-      /* school name already uses clamp, but we can adjust min font size if needed */
       .school-name {
-        font-size: clamp(1rem, 5vw, 1.4rem);
+        font-size: clamp(1rem, 5vw, 1.3rem);
       }
       .affiliation {
         font-size: 0.52rem;
@@ -540,7 +539,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | School name now bigger and adjusts to logo</p>
+        <p>Logo file: gldlogo.png | Size: 55px | Transparent background | Text adjusted for perfect alignment</p>
       </div>
     </div>
 
@@ -554,22 +553,22 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LARGER LOGO, ADJUSTED SCHOOL NAME SIZE -->
+    <!-- 1:1 POSTER: LOGO 55px, TEXT ADJUSTED -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: compact but adaptable to larger text -->
+        <!-- HEADER: logo size 55px, text spacing optimized -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
+            <!-- Logo container - 55px -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
-                   style="background: transparent; width: 65px; height: 65px;"
+                   style="background: transparent; width: 55px; height: 55px;"
                    onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
               <div id="logoFallback" class="logo-fallback" style="display: none;">
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section: school name now larger and can wrap, affiliation separate -->
+            <!-- Title section: school name and affiliation -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -582,7 +581,7 @@
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Larger logo with transparent background</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Logo 55px, text adjusted</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
@@ -607,7 +606,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px)</strong> | <strong>School name now larger & responsive</strong> | Auto-adjusts to header
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo size: 55px</strong> | <strong>School name & text adjusted for perfect alignment</strong> | High quality
     </div>
   </div>
 </div>
@@ -635,8 +634,8 @@
   schoolLogoImg.style.background = "transparent";
   schoolLogoImg.style.padding = "0";
   schoolLogoImg.style.boxShadow = "none";
-  schoolLogoImg.style.width = "65px";
-  schoolLogoImg.style.height = "65px";
+  schoolLogoImg.style.width = "55px";
+  schoolLogoImg.style.height = "55px";
   schoolLogoImg.style.imageRendering = "auto";
   
   schoolLogoImg.onerror = function() {
@@ -650,11 +649,11 @@
     this.style.background = 'transparent';
     this.style.padding = '0';
     this.style.boxShadow = 'none';
-    this.style.width = "65px";
-    this.style.height = "65px";
+    this.style.width = "55px";
+    this.style.height = "55px";
     this.style.objectFit = "contain";
     logoFallback.style.display = 'none';
-    console.log("Logo loaded successfully with larger size and transparent background");
+    console.log("Logo loaded successfully with 55px size and transparent background");
   };
 
   // Main photo functions
@@ -723,8 +722,8 @@
           clonedLogo.style.background = 'transparent';
           clonedLogo.style.padding = '0';
           clonedLogo.style.boxShadow = 'none';
-          clonedLogo.style.width = "65px";
-          clonedLogo.style.height = "65px";
+          clonedLogo.style.width = "55px";
+          clonedLogo.style.height = "55px";
         }
       }
     }).then((canvas) => {
@@ -827,7 +826,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — School name now larger, responsive, and fits well with logo!");
+  console.log("Poster ready — Logo size: 55px, text spacing adjusted for perfect visual harmony!");
 </script>
 </body>
 </html>
