@@ -180,7 +180,7 @@ body.dark #posterBox {
   background: #1e1e2f;
 }
 
-/* ========= HEADER SECTION - MINIMAL LOGO SPACING ========= */
+/* ========= HEADER SECTION - NO SPACE BETWEEN LOGO & TEXT, REDUCED HEIGHT ========= */
 .poster-header {
   background: #0a2f4d;
   padding: 0;
@@ -195,16 +195,16 @@ body.dark #posterBox {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 6px 12px;
+  padding: 4px 8px;
   margin: 0;
   position: relative;
-  min-height: 72px;
+  min-height: 60px;
 }
 
-/* Logo container - MINIMAL LEFT AND RIGHT SPACE (2px) */
+/* Logo container - NO SPACE FROM LEFT, NO SPACE BETWEEN LOGO AND TEXT */
 .logo-container {
   position: absolute;
-  left: 2px;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   flex-shrink: 0;
@@ -216,8 +216,8 @@ body.dark #posterBox {
 }
 
 .school-logo {
-  width: 55px;
-  height: 55px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   display: block;
   background: transparent;
@@ -231,8 +231,8 @@ body.dark #posterBox {
 }
 
 .logo-fallback {
-  width: 55px;
-  height: 55px;
+  width: 52px;
+  height: 52px;
   background: #f7c35c;
   color: #0a2f4d;
   display: flex;
@@ -242,15 +242,15 @@ body.dark #posterBox {
   font-size: 1.6rem;
 }
 
-/* Title section - LEFT ALIGNED WITH MINIMAL SPACING FROM LOGO */
+/* Title section - NO SPACE FROM LOGO */
 .title-section {
   text-align: left;
-  margin-left: 62px;
-  margin-right: 12px;
+  margin-left: 52px;
+  margin-right: 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: calc(100% - 74px);
+  max-width: calc(100% - 60px);
   flex: 1;
 }
 
@@ -268,7 +268,7 @@ body.dark #posterBox {
   text-overflow: ellipsis;
 }
 
-/* Affiliation - LEFT ALIGNED */
+/* Affiliation - SECOND LINE ONLY */
 .affiliation {
   font-size: 0.6rem;
   opacity: 0.9;
@@ -414,8 +414,8 @@ body.dark .btn-secondary {
     padding: 1rem;
   }
   .school-logo, .logo-fallback {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
   .school-name {
     font-size: 1.1rem;
@@ -435,16 +435,16 @@ body.dark .btn-secondary {
     font-size: 0.8rem;
   }
   .header-content {
-    padding: 5px 10px;
-    min-height: 58px;
+    padding: 3px 6px;
+    min-height: 50px;
   }
   .logo-container {
-    left: 2px;
+    left: 0;
   }
   .title-section {
-    margin-left: 48px;
-    margin-right: 8px;
-    max-width: calc(100% - 56px);
+    margin-left: 42px;
+    margin-right: 6px;
+    max-width: calc(100% - 48px);
   }
   .poster-footer {
     padding: 4px 10px;
@@ -464,6 +464,7 @@ body.dark .btn-secondary {
 body.dark .menu-drawer {
   background: #262639;
 }
+
 .menu-drawer.open {
   max-height: 250px;
   padding: 1rem;
