@@ -192,10 +192,10 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - LOGO 55px, SCHOOL NAME IN TWO LINES ========= */
+    /* ========= HEADER SECTION - EXTRA PADDING REMOVED, SCHOOL NAME SINGLE LINE ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 6px 12px;        /* balanced padding */
+      padding: 4px 12px;        /* minimal vertical padding - no extra space */
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -245,7 +245,7 @@
       font-size: 1.6rem;
     }
 
-    /* Title section - now school name occupies two lines, affiliation third line */
+    /* Title section - school name single line, affiliation below */
     .title-section {
       flex: 1;
       text-align: left;
@@ -253,33 +253,34 @@
       min-width: 0;
     }
 
-    /* SCHOOL NAME - now two lines via <br> */
+    /* SCHOOL NAME - single line, responsive */
     .school-name {
-      font-size: clamp(1rem, 4.5vw, 1.45rem);
+      font-size: clamp(1rem, 4.8vw, 1.55rem);
       font-weight: 900;
       line-height: 1.2;
       text-transform: uppercase;
-      margin-bottom: 2px;
-      white-space: normal;
-      word-break: break-word;
+      white-space: nowrap;           /* force single line */
+      overflow-x: auto;
+      overflow-y: hidden;
       display: block;
       text-align: left;
+      margin-bottom: 2px;
+      letter-spacing: 0.3px;
     }
 
-    /* Affiliation line - remains separate */
+    /* Affiliation line */
     .affiliation {
       font-size: 0.62rem;
       opacity: 0.9;
       line-height: 1.25;
       font-weight: normal;
-      white-space: normal;
-      word-break: break-word;
+      white-space: nowrap;           /* keep as single line on desktop, but can scroll on very small screens */
+      overflow-x: auto;
       display: block;
       text-align: left;
-      margin-top: 2px;
     }
 
-    /* ========= MAIN PHOTO ZONE - PRESERVES ORIGINAL IMAGE SIZE/QUALITY ========= */
+    /* ========= MAIN PHOTO ZONE ========= */
     .poster-photo {
       flex: 1;
       background: #eef2f0;
@@ -318,7 +319,7 @@
       background: #2a2a38;
     }
 
-    /* ========= FOOTER SECTION - REDUCED HEIGHT ========= */
+    /* ========= FOOTER SECTION ========= */
     .poster-footer {
       background: #0a2f4d;
       padding: 5px 12px;
@@ -403,7 +404,7 @@
       opacity: 0.9;
     }
 
-    /* ========= MOBILE ADJUSTMENTS ========= */
+    /* ========= MOBILE ADJUSTMENTS: allow scrolling for long text ========= */
     @media (max-width: 550px) {
       body {
         padding: 0.8rem;
@@ -416,10 +417,17 @@
         height: 45px;
       }
       .school-name {
-        font-size: clamp(0.9rem, 4vw, 1.2rem);
+        font-size: clamp(0.9rem, 4.5vw, 1.25rem);
+        white-space: nowrap;
       }
       .affiliation {
         font-size: 0.5rem;
+        white-space: nowrap;
+      }
+      .title-section {
+        overflow-x: auto;        /* enables scroll on very narrow screens */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
       }
       .address-line {
         font-size: 0.58rem;
@@ -433,7 +441,7 @@
         font-size: 0.8rem;
       }
       .poster-header {
-        padding: 4px 10px;
+        padding: 3px 10px;       /* even tighter on mobile */
       }
       .header-content {
         gap: 8px;
@@ -540,7 +548,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Size: 55px | School name now in two lines for better readability</p>
+        <p>Logo file: gldlogo.png | Size: 55px | Header padding removed | School name single line</p>
       </div>
     </div>
 
@@ -554,10 +562,10 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LOGO 55px, SCHOOL NAME IN TWO LINES -->
+    <!-- 1:1 POSTER: MINIMAL HEADER, SINGLE-LINE SCHOOL NAME -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: logo 55px, school name split into two lines -->
+        <!-- HEADER: no extra padding, compact -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container - 55px -->
@@ -569,25 +577,25 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section: school name now two lines, affiliation below -->
+            <!-- Title section: school name single line, affiliation below -->
             <div class="title-section">
-              <div class="school-name">GLD PUBLIC SCHOOL<br>KHAIRTAL</div>
+              <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
             </div>
           </div>
         </div>
 
-        <!-- dynamic photo area - your uploaded image sits here with original quality -->
+        <!-- dynamic photo area -->
         <div class="poster-photo" id="posterPhotoArea">
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Logo 55px, school name in two lines</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Compact header, single-line school name</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
 
-        <!-- FOOTER: REDUCED HEIGHT, location icon included -->
+        <!-- FOOTER -->
         <div class="poster-footer">
           <div class="address-line">
             <i class="fas fa-map-marker-alt"></i> Khairtal Nawagarh, Dist-Janjgir champa (C.G.) Pin-495557
@@ -601,13 +609,13 @@
       </div>
     </div>
 
-    <!-- Action Buttons: Download Poster -->
+    <!-- Action Buttons -->
     <div class="action-buttons">
       <button class="btn" id="downloadPosterBtn"><i class="fas fa-download"></i> Download Poster (PNG)</button>
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo: 55px</strong> | <strong>School name: two lines</strong> | Perfect for framing
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo: 55px</strong> | <strong>Header padding removed</strong> | School name single line
     </div>
   </div>
 </div>
@@ -624,11 +632,10 @@
   const menuToggleBtn = document.getElementById('menuToggleBtn');
   const menuDrawer = document.getElementById('menuDrawer');
   
-  // Logo elements - logo is pre-loaded from server with filename gldlogo.png
+  // Logo elements
   const schoolLogoImg = document.getElementById('schoolLogoImg');
   const logoFallback = document.getElementById('logoFallback');
 
-  // ========== LOGO SERVER CONFIGURATION ==========
   const SCHOOL_LOGO_PATH = "gldlogo.png";
   
   schoolLogoImg.src = SCHOOL_LOGO_PATH;
@@ -654,7 +661,6 @@
     this.style.height = "55px";
     this.style.objectFit = "contain";
     logoFallback.style.display = 'none';
-    console.log("Logo loaded successfully with 55px size and transparent background");
   };
 
   // Main photo functions
@@ -826,8 +832,6 @@
   resetPhotoToPlaceholder();
   initPlaceholderStyle();
   initDarkMode();
-  
-  console.log("Poster ready — Logo 55px, school name in two lines, text spacing optimized!");
 </script>
 </body>
 </html>
