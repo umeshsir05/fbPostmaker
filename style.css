@@ -180,7 +180,7 @@ body.dark #posterBox {
   background: #1e1e2f;
 }
 
-/* ========= HEADER SECTION - LOGO ON LEFT, TEXT LEFT-ALIGNED ========= */
+/* ========= HEADER SECTION - LOGO ON LEFT, TEXT LEFT-ALIGNED, REDUCED SPACING ========= */
 .poster-header {
   background: #0a2f4d;
   padding: 0;
@@ -242,15 +242,15 @@ body.dark #posterBox {
   font-size: 1.6rem;
 }
 
-/* Title section - LEFT ALIGNED */
+/* Title section - LEFT ALIGNED WITH REDUCED SPACING */
 .title-section {
   text-align: left;
-  margin-left: 70px;
+  margin-left: 72px;
   margin-right: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: calc(100% - 82px);
+  max-width: calc(100% - 84px);
   flex: 1;
 }
 
