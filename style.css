@@ -1,0 +1,512 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+  background: #f0f2f5;
+  padding: 1.5rem;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DARK MODE GLOBAL */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+.app-container {
+  max-width: 650px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* card style */
+.card {
+  background: white;
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  padding: 1.5rem 1.2rem 1.8rem;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+body.dark .card {
+  background: #1e1e2f;
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* header top bar: toggle + dark mode */
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.menu-toggle {
+  background: #0a2f4d;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+body.dark .menu-toggle {
+  background: #1e4a6e;
+}
+
+.menu-toggle i {
+  font-size: 1.2rem;
+}
+
+.darkmode-btn {
+  background: #2c3e66;
+  border: none;
+  color: #ffdd88;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+body.dark .darkmode-btn {
+  background: #f1c40f;
+  color: #1e1e2f;
+}
+
+/* Logo info card */
+.logo-info {
+  background: linear-gradient(135deg, #0a2f4d 0%, #0e3a5a 100%);
+  padding: 12px 16px;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+}
+
+.logo-info i {
+  font-size: 2rem;
+  color: #f7c35c;
+}
+
+.logo-info-text {
+  flex: 1;
+}
+
+.logo-info-text h4 {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.logo-info-text p {
+  font-size: 0.7rem;
+  opacity: 0.9;
+}
+
+/* Upload area for main photo */
+.upload-area {
+  background: #f8f9ff;
+  border: 2px dashed #0a2f4d;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+body.dark .upload-area {
+  background: #2a2a3b;
+  border-color: #2c6e9e;
+}
+
+.upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: #0a2f4d;
+  cursor: pointer;
+}
+
+body.dark .upload-label {
+  color: #7fb4d4;
+}
+
+.upload-label i {
+  font-size: 2.6rem;
+}
+
+#photoInput {
+  display: none;
+}
+
+/* 1:1 Poster Container - NO CURVED BORDERS */
+.poster-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0;
+}
+
+#posterBox {
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark #posterBox {
+  background: #1e1e2f;
+}
+
+/* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED, SEPARATED ========= */
+.poster-header {
+  background: #0a2f4d;
+  padding: 0;
+  margin: 0;
+  color: white;
+  border-bottom: 3px solid #f7c35c;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  margin: 0;
+  position: relative;
+  min-height: 70px;
+}
+
+/* Logo container - ABSOLUTE POSITIONED ON LEFT */
+.logo-container {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  z-index: 1;
+}
+
+.school-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+  display: block;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
+}
+
+.logo-fallback {
+  width: 55px;
+  height: 55px;
+  background: #f7c35c;
+  color: #0a2f4d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+/* Title section - CENTER ALIGNED - EXACTLY TWO LINES */
+.title-section {
+  text-align: center;
+  margin: 0 auto;
+  padding-left: 70px;
+  padding-right: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* SCHOOL NAME - FIRST LINE ONLY - EXTRA LARGE FONT */
+.school-name {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Affiliation - SECOND LINE ONLY */
+.affiliation {
+  font-size: 0.62rem;
+  opacity: 0.9;
+  line-height: 1.2;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========= MAIN PHOTO ZONE ========= */
+.poster-photo {
+  flex: 1;
+  background: #eef2f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+}
+
+.poster-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #f5f5f5;
+}
+
+.photo-placeholder {
+  text-align: center;
+  color: #aaa;
+  font-size: 0.85rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+}
+
+body.dark .photo-placeholder {
+  color: #888;
+  background: #2a2a38;
+}
+
+/* ========= FOOTER SECTION - REDUCED HEIGHT ========= */
+.poster-footer {
+  background: #0a2f4d;
+  padding: 5px 12px;
+  text-align: center;
+  border-top: 2px solid #f7c35c;
+  flex-shrink: 0;
+}
+
+.address-line {
+  font-size: 0.68rem;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 3px;
+  line-height: 1.3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.address-line i {
+  color: #f7c35c;
+  font-size: 0.7rem;
+}
+
+.contact-row {
+  font-size: 0.65rem;
+  color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  row-gap: 3px;
+  line-height: 1.3;
+}
+
+.contact-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.contact-row i {
+  color: #f7c35c;
+  font-size: 0.6rem;
+}
+
+/* action buttons */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: none;
+  padding: 12px 24px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background: #0a2f4d;
+  color: white;
+  transition: 0.2s;
+}
+
+.btn-secondary {
+  background: #4b6a8b;
+}
+
+body.dark .btn-secondary {
+  background: #5f7f9e;
+}
+
+.btn:hover {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+/* mobile adjustments */
+@media (max-width: 550px) {
+  body {
+    padding: 0.8rem;
+  }
+  .card {
+    padding: 1rem;
+  }
+  .school-logo, .logo-fallback {
+    width: 40px;
+    height: 40px;
+  }
+  .school-name {
+    font-size: 1.4rem;
+  }
+  .affiliation {
+    font-size: 0.52rem;
+  }
+  .address-line {
+    font-size: 0.58rem;
+  }
+  .contact-row {
+    font-size: 0.53rem;
+    gap: 8px;
+  }
+  .btn {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+  }
+  .header-content {
+    padding: 5px 10px;
+    min-height: 55px;
+  }
+  .logo-container {
+    left: 8px;
+  }
+  .title-section {
+    padding-left: 55px;
+    padding-right: 8px;
+  }
+  .poster-footer {
+    padding: 4px 10px;
+  }
+}
+
+/* toggle menu panel */
+.menu-drawer {
+  background: white;
+  margin-bottom: 1.2rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.dark .menu-drawer {
+  background: #262639;
+}
+
+.menu-drawer.open {
+  max-height: 250px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+
+.menu-item button {
+  background: #e9ecef;
+  border: none;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+body.dark .menu-item button {
+  background: #3a3a4e;
+  color: white;
+}
+
+.reset-img-btn {
+  background: #d9534f !important;
+  color: white !important;
+}
+
+hr {
+  margin: 0.5rem 0;
+  border-color: #ddd;
+}
+
+body.dark hr {
+  border-color: #3a3a4a;
+}
+
+.info-text {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 1rem;
+  opacity: 0.7;
+}
