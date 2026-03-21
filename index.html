@@ -1,258 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Image Fix</title>
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            /* Method 1: Background on body */
-            background-image: url('your-image.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        /* Alternative: If using a wrapper div for background */
-        .background-wrapper {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .background-wrapper::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('your-image.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            z-index: -1;
-        }
-
-        /* Header Styles */
-        .header {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 1rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Card/Content Container - makes text readable */
-        .content-card {
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .content-card h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .content-card p {
-            line-height: 1.6;
-            color: #555;
-            margin-bottom: 1rem;
-        }
-
-        /* Image Upload Area */
-        .image-upload {
-            margin-top: 2rem;
-            padding: 1rem;
-            border: 2px dashed #ccc;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .image-upload input {
-            margin-top: 1rem;
-        }
-
-        .preview-area {
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .preview-area img {
-            max-width: 100%;
-            max-height: 200px;
-            border-radius: 5px;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-            text-align: center;
-            padding: 1rem;
-            position: relative;
-            z-index: 1;
-            margin-top: auto;
-        }
-
-        /* Button Styles */
-        .btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
-
-        .btn:hover {
-            background-color: #45a049;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 1rem;
-            }
-            
-            .content-card {
-                padding: 1rem;
-            }
-            
-            .header h1 {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>GLD Poster Studio | 1:1 Photo Frame with Auto Logo</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Method 1: Simple structure with body background -->
-    <header class="header">
-        <h1>My Website Header</h1>
-    </header>
+<div class="app-container">
+  <div class="card">
+    <!-- Toolbar with toggle menu + dark mode -->
+    <div class="toolbar">
+      <button class="menu-toggle" id="menuToggleBtn">
+        <i class="fas fa-bars"></i> Menu
+      </button>
+      <button class="darkmode-btn" id="darkModeToggle">
+        <i class="fas fa-moon"></i> Dark
+      </button>
+    </div>
 
-    <main class="main-content">
-        <div class="content-card">
-            <h2>Upload Your Photo</h2>
-            <p>This is the main content area. The background image should be visible behind this card.</p>
-            
-            <!-- Image Upload Section -->
-            <div class="image-upload">
-                <label for="imageUpload">Upload a photo to set as background:</label>
-                <input type="file" id="imageUpload" accept="image/*">
-                <button class="btn" onclick="setAsBackground()">Set as Background</button>
-                <button class="btn" onclick="resetBackground()" style="background-color: #f44336;">Reset</button>
-                
-                <div class="preview-area" id="previewArea">
-                    <h4>Preview:</h4>
-                    <img id="previewImage" alt="Preview">
-                </div>
+    <!-- collapsible menu drawer -->
+    <div id="menuDrawer" class="menu-drawer">
+      <div class="menu-item">
+        <span><i class="fas fa-image"></i> Reset uploaded photo</span>
+        <button id="resetPhotoBtn" class="reset-img-btn">Remove photo</button>
+      </div>
+      <hr>
+      <div class="menu-item">
+        <span><i class="fas fa-info-circle"></i> Poster info</span>
+        <span>Logo auto-loaded from server</span>
+      </div>
+      <div class="menu-item">
+        <span><i class="fas fa-download"></i> Save as 1:1 PNG</span>
+        <span>High resolution</span>
+      </div>
+    </div>
+
+    <!-- Logo Info Card -->
+    <div class="logo-info">
+      <i class="fas fa-check-circle"></i>
+      <div class="logo-info-text">
+        <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
+        <p>Logo file: gldlogo.png | Logo on LEFT side | Text LEFT aligned | No space between logo & text | Reduced header height</p>
+      </div>
+    </div>
+
+    <!-- Main Photo Upload Area -->
+    <div class="upload-area" id="uploadTrigger">
+      <label for="photoInput" class="upload-label">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>Upload your photo</span>
+        <span style="font-size:0.7rem;">JPG, PNG — Original size & quality preserved</span>
+      </label>
+      <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
+    </div>
+
+    <!-- 1:1 POSTER: LOGO ON LEFT, NO SPACE, REDUCED HEADER HEIGHT -->
+    <div class="poster-wrapper">
+      <div id="posterBox">
+        <!-- HEADER: Logo on left, no space between logo and text -->
+        <div class="poster-header">
+          <div class="header-content">
+            <!-- Logo container - LEFT SIDE with no space -->
+            <div class="logo-container">
+              <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
+                   style="background: transparent;"
+                   onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+              <div id="logoFallback" class="logo-fallback" style="display: none;">
+                <i class="fas fa-school"></i>
+              </div>
             </div>
-            
-            <p style="margin-top: 2rem;">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <!-- Title section - LEFT ALIGNED with no space from logo -->
+            <div class="title-section">
+              <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
+              <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
+            </div>
+          </div>
         </div>
-    </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 My Website. All rights reserved.</p>
-    </footer>
+        <!-- dynamic photo area -->
+        <div class="poster-photo" id="posterPhotoArea">
+          <div class="photo-placeholder" id="photoPlaceholder">
+            <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
+            <p>Your photo will appear here</p>
+            <span style="font-size:0.7rem;">Original quality preserved</span>
+          </div>
+          <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
+        </div>
 
-    <script>
-        // Function to set uploaded image as background
-        function setAsBackground() {
-            const fileInput = document.getElementById('imageUpload');
-            const file = fileInput.files[0];
-            
-            if (file) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const imageUrl = e.target.result;
-                    
-                    // Set as body background
-                    document.body.style.backgroundImage = `url('${imageUrl}')`;
-                    document.body.style.backgroundSize = 'cover';
-                    document.body.style.backgroundPosition = 'center';
-                    document.body.style.backgroundRepeat = 'no-repeat';
-                    document.body.style.backgroundAttachment = 'fixed';
-                    
-                    // Show preview
-                    const previewArea = document.getElementById('previewArea');
-                    const previewImage = document.getElementById('previewImage');
-                    previewImage.src = imageUrl;
-                    previewArea.style.display = 'block';
-                    
-                    // Optional: Save to localStorage
-                    localStorage.setItem('backgroundImage', imageUrl);
-                    
-                    alert('Background image updated successfully!');
-                };
-                
-                reader.readAsDataURL(file);
-            } else {
-                alert('Please select an image file first.');
-            }
-        }
-        
-        // Function to reset background
-        function resetBackground() {
-            document.body.style.backgroundImage = '';
-            localStorage.removeItem('backgroundImage');
-            document.getElementById('previewArea').style.display = 'none';
-            document.getElementById('imageUpload').value = '';
-            alert('Background reset to default.');
-        }
-        
-        // Load saved background on page load
-        window.addEventListener('load', function() {
-            const savedBackground = localStorage.getItem('backgroundImage');
-            if (savedBackground) {
-                document.body.style.backgroundImage = `url('${savedBackground}')`;
-                document.body.style.backgroundSize = 'cover';
-                document.body.style.backgroundPosition = 'center';
-                document.body.style.backgroundRepeat = 'no-repeat';
-                document.body.style.backgroundAttachment = 'fixed';
-                
-                // Show in preview if needed
-                const previewArea = document.getElementById('previewArea');
-                const previewImage = document.getElementById('previewImage');
-                previewImage.src = savedBackground;
-                previewArea.style.display = 'block';
-            }
-        });
-    </script>
+        <!-- FOOTER -->
+        <div class="poster-footer">
+          <div class="address-line">
+            <i class="fas fa-map-marker-alt"></i> Khairtal Nawagarh, Dist-Janjgir champa (C.G.) Pin-495557
+          </div>
+          <div class="contact-row">
+            <span><i class="fas fa-phone-alt"></i> 9827500064</span>
+            <span><i class="fas fa-envelope"></i> gldpublicschool@gmail.com</span>
+            <span><i class="fas fa-globe"></i> gldpublicschool.in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="btn" id="downloadPosterBtn"><i class="fas fa-download"></i> Download Poster (PNG)</button>
+      <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
+    </div>
+    <div class="info-text">
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | No space between logo & text | Reduced header height
+    </div>
+  </div>
+</div>
+
+<!-- html2canvas for poster download -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<!-- Custom JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>
