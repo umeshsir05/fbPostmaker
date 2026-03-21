@@ -191,7 +191,7 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - CENTER ALIGNED ========= */
+    /* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED ========= */
     .poster-header {
       background: #0a2f4d;
       padding: 0;
@@ -199,20 +199,24 @@
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
+      position: relative;
     }
 
     .header-content {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
       padding: 6px 12px;
       margin: 0;
-      flex-wrap: wrap;
+      position: relative;
     }
 
-    /* Logo container */
+    /* Logo container - ABSOLUTE POSITIONED ON LEFT */
     .logo-container {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -250,6 +254,7 @@
     /* Title section - CENTER ALIGNED */
     .title-section {
       text-align: center;
+      margin: 0 auto;
     }
 
     /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
@@ -406,11 +411,11 @@
         padding: 1rem;
       }
       .school-logo, .logo-fallback {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
       }
       .school-name {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       .affiliation {
         font-size: 0.52rem;
@@ -427,8 +432,10 @@
         font-size: 0.8rem;
       }
       .header-content {
-        padding: 4px 10px;
-        gap: 8px;
+        padding: 5px 10px;
+      }
+      .logo-container {
+        left: 8px;
       }
       .poster-footer {
         padding: 4px 10px;
@@ -532,7 +539,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Center aligned header | Extra large school name | Minimal header height</p>
+        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Extra large school name</p>
       </div>
     </div>
 
@@ -546,13 +553,13 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: CENTER ALIGNED HEADER -->
+    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Center aligned logo and text -->
+        <!-- HEADER: Logo absolute on left, text centered -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container -->
+            <!-- Logo container - ABSOLUTE ON LEFT SIDE -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
                    style="background: transparent;"
@@ -599,7 +606,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Center aligned header</strong> | Extra large school name | Minimal header height | Logo with transparent background
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | Extra large school name
     </div>
   </div>
 </div>
@@ -805,7 +812,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Center aligned header, extra large school name, minimal header height!");
+  console.log("Poster ready — Logo on LEFT side (absolute position), text CENTER aligned!");
 </script>
 </body>
 </html>
