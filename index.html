@@ -191,7 +191,7 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - MINIMAL HEIGHT, NO PADDING/MARGIN ========= */
+    /* ========= HEADER SECTION - CENTER ALIGNED ========= */
     .poster-header {
       background: #0a2f4d;
       padding: 0;
@@ -204,13 +204,14 @@
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
+      justify-content: center;
+      gap: 12px;
       padding: 6px 12px;
       margin: 0;
+      flex-wrap: wrap;
     }
 
-    /* Logo container - larger and clearer */
+    /* Logo container */
     .logo-container {
       flex-shrink: 0;
       display: flex;
@@ -246,11 +247,9 @@
       font-size: 1.6rem;
     }
 
-    /* Title section - EXACTLY TWO LINES */
+    /* Title section - CENTER ALIGNED */
     .title-section {
-      flex: 1;
-      text-align: left;
-      line-height: 1.1;
+      text-align: center;
     }
 
     /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
@@ -262,9 +261,6 @@
       text-transform: uppercase;
       margin: 0;
       padding: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     /* Affiliation - second line only */
@@ -275,9 +271,6 @@
       font-weight: normal;
       margin: 0;
       padding: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     /* ========= MAIN PHOTO ZONE - PRESERVES ORIGINAL IMAGE SIZE/QUALITY ========= */
@@ -539,7 +532,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Extra large school name | Minimal header height | Text in exactly two lines</p>
+        <p>Logo file: gldlogo.png | Center aligned header | Extra large school name | Minimal header height</p>
       </div>
     </div>
 
@@ -553,10 +546,10 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: EXTRA LARGE SCHOOL NAME, MINIMAL HEADER HEIGHT -->
+    <!-- 1:1 POSTER: CENTER ALIGNED HEADER -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Zero margin/padding, minimal height -->
+        <!-- HEADER: Center aligned logo and text -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container -->
@@ -568,7 +561,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - EXACTLY TWO LINES with EXTRA LARGE SCHOOL NAME -->
+            <!-- Title section - CENTER ALIGNED -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -606,7 +599,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Extra large school name</strong> | Minimal header height | Text in exactly 2 lines | Logo with transparent background
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Center aligned header</strong> | Extra large school name | Minimal header height | Logo with transparent background
     </div>
   </div>
 </div>
@@ -812,7 +805,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Extra large school name (1.55rem), minimal header height, text in exactly two lines!");
+  console.log("Poster ready — Center aligned header, extra large school name, minimal header height!");
 </script>
 </body>
 </html>
