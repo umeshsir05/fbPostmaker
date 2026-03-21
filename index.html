@@ -520,7 +520,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo positioned on LEFT side of header | You only need to upload your photo</p>
+        <p>Logo file: gldlogo.png | Positioned on LEFT side of header | You only need to upload your photo</p>
       </div>
     </div>
 
@@ -540,7 +540,7 @@
         <!-- HEADER: Logo on LEFT side, school name beside it -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - LEFT SIDE -->
+            <!-- Logo container - LEFT SIDE with gldlogo.png -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
                    onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
@@ -561,7 +561,7 @@
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Logo on left side</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Logo: gldlogo.png on left side</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
@@ -586,7 +586,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Rectangular borders | School name bold & large | Reduced footer height
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo: gldlogo.png on LEFT side</strong> | Rectangular borders | School name bold & large | Reduced footer height
     </div>
   </div>
 </div>
@@ -603,21 +603,21 @@
   const menuToggleBtn = document.getElementById('menuToggleBtn');
   const menuDrawer = document.getElementById('menuDrawer');
   
-  // Logo elements - logo is pre-loaded from server URL
+  // Logo elements - logo is pre-loaded from server with filename gldlogo.png
   const schoolLogoImg = document.getElementById('schoolLogoImg');
   const logoFallback = document.getElementById('logoFallback');
 
   // ========== LOGO SERVER CONFIGURATION ==========
-  // 👇 IMPORTANT: Replace this URL with your actual school logo server path
-  // You can change this to your hosted logo image URL (e.g., https://yourserver.com/logo.png)
-  const SCHOOL_LOGO_URL = "https://placehold.co/200x200/0a2f4d/f7c35c?text=GLD";
+  // Logo file: gldlogo.png - place this file in the same directory as this HTML file
+  // or update the path below to point to your server location
+  const SCHOOL_LOGO_PATH = "gldlogo.png";
   
   // Set logo from server
-  schoolLogoImg.src = SCHOOL_LOGO_URL;
+  schoolLogoImg.src = SCHOOL_LOGO_PATH;
   
   // Handle logo load error - show fallback icon
   schoolLogoImg.onerror = function() {
-    console.log("Logo failed to load from server. Using fallback icon.");
+    console.log("Logo file 'gldlogo.png' not found. Using fallback icon.");
     this.style.display = 'none';
     logoFallback.style.display = 'flex';
   };
@@ -789,7 +789,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Logo on LEFT side, rectangular borders, reduced footer height, larger bold school name!");
+  console.log("Poster ready — Logo file: gldlogo.png on LEFT side, rectangular borders, reduced footer height, larger bold school name!");
 </script>
 </body>
 </html>
