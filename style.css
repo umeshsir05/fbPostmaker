@@ -254,9 +254,9 @@ body.dark #posterBox {
   max-width: 100%;
 }
 
-/* SCHOOL NAME - REDUCED FONT SIZE TO FIT IN HEADER */
+/* SCHOOL NAME - SLIGHTLY INCREASED FONT SIZE */
 .school-name {
-  font-size: 1.80rem;
+  font-size: 1.35rem;
   font-weight: 900;
   letter-spacing: 0.3px;
   line-height: 1.2;
@@ -418,7 +418,7 @@ body.dark .btn-secondary {
     height: 40px;
   }
   .school-name {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .affiliation {
     font-size: 0.5rem;
