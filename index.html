@@ -192,11 +192,10 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - DARK NAVY BLUE WITH AUTO LOGO ========= */
+    /* ========= HEADER SECTION - REDUCED HEIGHT, LARGER LOGO ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 12px 16px;
-      text-align: center;
+      padding: 8px 16px;
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -205,38 +204,68 @@
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 12px;
-      flex-wrap: wrap;
+    }
+
+    /* Logo container - larger and clearer */
+    .logo-container {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
     }
 
     .school-logo {
-      width: 44px;
-      height: 44px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
-      background: white;
-      padding: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      display: block;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      image-rendering: high-quality;
     }
 
+    .logo-fallback {
+      width: 65px;
+      height: 65px;
+      background: #f7c35c;
+      color: #0a2f4d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border-radius: 8px;
+      font-size: 1.8rem;
+    }
+
+    /* Title section - adjusted to align with larger logo */
     .title-section {
-      text-align: center;
+      flex: 1;
+      text-align: left;
+      line-height: 1.2;
     }
 
-    /* SCHOOL NAME - LARGER AND BOLDER ONLY (not the affiliation) */
+    /* SCHOOL NAME - adjusted size to balance with larger logo */
     .school-name {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 900;
       letter-spacing: 0.5px;
       line-height: 1.2;
       text-transform: uppercase;
+      margin-bottom: 2px;
     }
 
     .affiliation {
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       opacity: 0.9;
-      margin-top: 5px;
-      line-height: 1.3;
+      line-height: 1.2;
       font-weight: normal;
     }
 
@@ -372,11 +401,15 @@
       .card {
         padding: 1rem;
       }
+      .school-logo, .logo-fallback {
+        width: 50px;
+        height: 50px;
+      }
       .school-name {
-        font-size: 1.1rem;
+        font-size: 1rem;
       }
       .affiliation {
-        font-size: 0.55rem;
+        font-size: 0.52rem;
       }
       .address-line {
         font-size: 0.58rem;
@@ -390,14 +423,13 @@
         font-size: 0.8rem;
       }
       .poster-header {
-        padding: 8px 12px;
+        padding: 6px 12px;
       }
       .poster-footer {
         padding: 4px 10px;
       }
-      .school-logo {
-        width: 36px;
-        height: 36px;
+      .header-content {
+        gap: 8px;
       }
     }
 
@@ -498,7 +530,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo is permanently placed in poster header | You only need to upload your photo</p>
+        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Reduced header height</p>
       </div>
     </div>
 
@@ -512,20 +544,23 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: NO CURVED BORDERS, REDUCED FOOTER HEIGHT, LARGER BOLDER SCHOOL NAME -->
+    <!-- 1:1 POSTER: LARGER LOGO, REDUCED HEADER HEIGHT, CLEAR QUALITY -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: dark navy blue with auto-loaded logo from server -->
+        <!-- HEADER: Reduced height, larger logo on left -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo loaded directly from server - you can change this URL to your actual logo server path -->
-            <img id="schoolLogoImg" class="school-logo" src="https://placehold.co/200x200/0a2f4d/f7c35c?text=GLD" alt="School Logo" 
-                 onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
-            <div id="logoFallback" class="school-logo" style="display: none; background: #f7c35c; color: #0a2f4d; align-items: center; justify-content: center; font-weight: bold;">
-              <i class="fas fa-school"></i>
+            <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
+            <div class="logo-container">
+              <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
+                   style="background: transparent; width: 65px; height: 65px;"
+                   onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+              <div id="logoFallback" class="logo-fallback" style="display: none;">
+                <i class="fas fa-school"></i>
+              </div>
             </div>
+            <!-- Title section - adjusted to align with larger logo -->
             <div class="title-section">
-              <!-- SCHOOL NAME - LARGER AND BOLDER ONLY -->
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
             </div>
@@ -537,7 +572,7 @@
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Logo already in header</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Larger logo with transparent background</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
@@ -562,7 +597,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Rectangular borders (no curves)</strong> | School name bold & large | Reduced footer height
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px) - crystal clear</strong> | Reduced header height | Rectangular borders
     </div>
   </div>
 </div>
@@ -579,29 +614,42 @@
   const menuToggleBtn = document.getElementById('menuToggleBtn');
   const menuDrawer = document.getElementById('menuDrawer');
   
-  // Logo elements - logo is pre-loaded from server URL
+  // Logo elements - logo is pre-loaded from server with filename gldlogo.png
   const schoolLogoImg = document.getElementById('schoolLogoImg');
   const logoFallback = document.getElementById('logoFallback');
 
   // ========== LOGO SERVER CONFIGURATION ==========
-  // 👇 IMPORTANT: Replace this URL with your actual school logo server path
-  // You can change this to your hosted logo image URL (e.g., https://yourserver.com/logo.png)
-  const SCHOOL_LOGO_URL = "https://placehold.co/200x200/0a2f4d/f7c35c?text=GLD";
+  // Logo file: gldlogo.png - place this file in the same directory as this HTML file
+  // Logo size: 65x65px for larger, clearer display
+  const SCHOOL_LOGO_PATH = "gldlogo.png";
   
-  // Set logo from server
-  schoolLogoImg.src = SCHOOL_LOGO_URL;
+  // Set logo from server with high quality preservation
+  schoolLogoImg.src = SCHOOL_LOGO_PATH;
+  schoolLogoImg.style.background = "transparent";
+  schoolLogoImg.style.padding = "0";
+  schoolLogoImg.style.boxShadow = "none";
+  schoolLogoImg.style.width = "65px";
+  schoolLogoImg.style.height = "65px";
+  schoolLogoImg.style.imageRendering = "auto";
   
   // Handle logo load error - show fallback icon
   schoolLogoImg.onerror = function() {
-    console.log("Logo failed to load from server. Using fallback icon.");
+    console.log("Logo file 'gldlogo.png' not found. Using fallback icon.");
     this.style.display = 'none';
     logoFallback.style.display = 'flex';
   };
   
-  // If logo loads successfully, hide fallback
+  // If logo loads successfully, ensure no white background and clear quality
   schoolLogoImg.onload = function() {
     this.style.display = 'block';
+    this.style.background = 'transparent';
+    this.style.padding = '0';
+    this.style.boxShadow = 'none';
+    this.style.width = "65px";
+    this.style.height = "65px";
+    this.style.objectFit = "contain";
     logoFallback.style.display = 'none';
+    console.log("Logo loaded successfully with larger size and transparent background");
   };
 
   // Main photo functions
@@ -651,7 +699,7 @@
   resetPhotoBtn.addEventListener('click', handleReset);
   resetViewBtn.addEventListener('click', handleReset);
 
-  // Download poster as PNG - includes auto-loaded logo from server
+  // Download poster as PNG - includes auto-loaded logo from server with transparent background
   downloadBtn.addEventListener('click', function() {
     const posterElement = document.getElementById('posterBox');
     const originalBtnText = downloadBtn.innerHTML;
@@ -662,9 +710,20 @@
       scale: 3,
       backgroundColor: null,
       logging: false,
-      useCORS: true,  // Important for loading images from server
+      useCORS: true,
       allowTaint: false,
-      crossOrigin: 'anonymous'
+      crossOrigin: 'anonymous',
+      onclone: (clonedDoc, element) => {
+        // Ensure logo maintains transparent background and larger size in cloned document
+        const clonedLogo = clonedDoc.getElementById('schoolLogoImg');
+        if (clonedLogo) {
+          clonedLogo.style.background = 'transparent';
+          clonedLogo.style.padding = '0';
+          clonedLogo.style.boxShadow = 'none';
+          clonedLogo.style.width = "65px";
+          clonedLogo.style.height = "65px";
+        }
+      }
     }).then((canvas) => {
       const link = document.createElement('a');
       link.download = 'GLD_School_Poster_With_Logo.png';
@@ -765,7 +824,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Rectangular borders (no curves), reduced footer height, larger bold school name only!");
+  console.log("Poster ready — Larger logo (65px), reduced header height, transparent background, high quality preserved!");
 </script>
 </body>
 </html>
