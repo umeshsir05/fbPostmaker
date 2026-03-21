@@ -191,7 +191,7 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED ========= */
+    /* ========= HEADER SECTION - LOGO ON LEFT WITH SPACING ========= */
     .poster-header {
       background: #0a2f4d;
       padding: 0;
@@ -206,12 +206,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px 12px;
+      padding: 8px 12px;
       margin: 0;
       position: relative;
+      min-height: 70px;
     }
 
-    /* Logo container - ABSOLUTE POSITIONED ON LEFT */
+    /* Logo container - ABSOLUTE POSITIONED ON LEFT WITH SPACING */
     .logo-container {
       position: absolute;
       left: 12px;
@@ -222,6 +223,7 @@
       align-items: center;
       justify-content: center;
       line-height: 0;
+      z-index: 1;
     }
 
     .school-logo {
@@ -251,10 +253,12 @@
       font-size: 1.6rem;
     }
 
-    /* Title section - CENTER ALIGNED */
+    /* Title section - CENTER ALIGNED WITH SPACING FROM LOGO */
     .title-section {
       text-align: center;
       margin: 0 auto;
+      padding-left: 70px;
+      padding-right: 12px;
     }
 
     /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
@@ -262,7 +266,7 @@
       font-size: 1.55rem;
       font-weight: 900;
       letter-spacing: 0.5px;
-      line-height: 1.1;
+      line-height: 1.2;
       text-transform: uppercase;
       margin: 0;
       padding: 0;
@@ -411,11 +415,11 @@
         padding: 1rem;
       }
       .school-logo, .logo-fallback {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
       }
       .school-name {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
       .affiliation {
         font-size: 0.52rem;
@@ -432,10 +436,15 @@
         font-size: 0.8rem;
       }
       .header-content {
-        padding: 5px 10px;
+        padding: 6px 10px;
+        min-height: 60px;
       }
       .logo-container {
         left: 8px;
+      }
+      .title-section {
+        padding-left: 58px;
+        padding-right: 8px;
       }
       .poster-footer {
         padding: 4px 10px;
@@ -539,7 +548,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Extra large school name</p>
+        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Proper spacing between logo and text</p>
       </div>
     </div>
 
@@ -553,10 +562,10 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED -->
+    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED WITH SPACING -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Logo absolute on left, text centered -->
+        <!-- HEADER: Logo absolute on left, text centered with spacing -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container - ABSOLUTE ON LEFT SIDE -->
@@ -568,7 +577,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - CENTER ALIGNED -->
+            <!-- Title section - CENTER ALIGNED with proper spacing from logo -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -606,7 +615,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | Extra large school name
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | Proper spacing between logo and text
     </div>
   </div>
 </div>
@@ -812,7 +821,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Logo on LEFT side (absolute position), text CENTER aligned!");
+  console.log("Poster ready — Logo on LEFT side, text CENTER aligned with proper spacing!");
 </script>
 </body>
 </html>
