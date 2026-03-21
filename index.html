@@ -191,7 +191,7 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED, TWO LINES ONLY ========= */
+    /* ========= HEADER SECTION - MINIMAL HEIGHT, NO PADDING/MARGIN ========= */
     .poster-header {
       background: #0a2f4d;
       padding: 0;
@@ -199,31 +199,24 @@
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
-      position: relative;
     }
 
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 8px 12px;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 6px 12px;
       margin: 0;
-      position: relative;
-      min-height: 70px;
     }
 
-    /* Logo container - ABSOLUTE POSITIONED ON LEFT */
+    /* Logo container - larger and clearer */
     .logo-container {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 0;
-      z-index: 1;
     }
 
     .school-logo {
@@ -253,23 +246,19 @@
       font-size: 1.6rem;
     }
 
-    /* Title section - CENTER ALIGNED WITH SPACING - EXACTLY TWO LINES */
+    /* Title section - EXACTLY TWO LINES */
     .title-section {
-      text-align: center;
-      margin: 0 auto;
-      padding-left: 70px;
-      padding-right: 12px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      flex: 1;
+      text-align: left;
+      line-height: 1.1;
     }
 
-    /* SCHOOL NAME - FIRST LINE ONLY */
+    /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
     .school-name {
       font-size: 1.55rem;
       font-weight: 900;
       letter-spacing: 0.5px;
-      line-height: 1.2;
+      line-height: 1.1;
       text-transform: uppercase;
       margin: 0;
       padding: 0;
@@ -278,7 +267,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Affiliation - SECOND LINE ONLY */
+    /* Affiliation - second line only */
     .affiliation {
       font-size: 0.62rem;
       opacity: 0.9;
@@ -445,15 +434,8 @@
         font-size: 0.8rem;
       }
       .header-content {
-        padding: 6px 10px;
-        min-height: 60px;
-      }
-      .logo-container {
-        left: 8px;
-      }
-      .title-section {
-        padding-left: 58px;
-        padding-right: 8px;
+        padding: 4px 10px;
+        gap: 8px;
       }
       .poster-footer {
         padding: 4px 10px;
@@ -557,7 +539,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Header in exactly TWO lines</p>
+        <p>Logo file: gldlogo.png | Extra large school name | Minimal header height | Text in exactly two lines</p>
       </div>
     </div>
 
@@ -571,13 +553,13 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED, TWO LINES ONLY -->
+    <!-- 1:1 POSTER: EXTRA LARGE SCHOOL NAME, MINIMAL HEADER HEIGHT -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Logo absolute on left, text centered with spacing, exactly two lines -->
+        <!-- HEADER: Zero margin/padding, minimal height -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - ABSOLUTE ON LEFT SIDE -->
+            <!-- Logo container -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
                    style="background: transparent;"
@@ -586,7 +568,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - EXACTLY TWO LINES (First: School Name, Second: Affiliation) -->
+            <!-- Title section - EXACTLY TWO LINES with EXTRA LARGE SCHOOL NAME -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -624,7 +606,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | <strong>Header in exactly TWO lines</strong>
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Extra large school name</strong> | Minimal header height | Text in exactly 2 lines | Logo with transparent background
     </div>
   </div>
 </div>
@@ -830,7 +812,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Logo on LEFT side, text CENTER aligned, header in exactly TWO lines!");
+  console.log("Poster ready — Extra large school name (1.55rem), minimal header height, text in exactly two lines!");
 </script>
 </body>
 </html>
