@@ -198,7 +198,7 @@ body.dark #posterBox {
   padding: 6px 12px;
   margin: 0;
   position: relative;
-  min-height: 70px;
+  min-height: 72px;
 }
 
 /* Logo container - ABSOLUTE POSITIONED ON LEFT */
@@ -254,9 +254,9 @@ body.dark #posterBox {
   max-width: 100%;
 }
 
-/* SCHOOL NAME - SLIGHTLY INCREASED FONT SIZE */
+/* SCHOOL NAME - INCREASED FONT SIZE */
 .school-name {
-  font-size: 1.35rem;
+  font-size: 1.5rem;
   font-weight: 900;
   letter-spacing: 0.3px;
   line-height: 1.2;
@@ -418,7 +418,7 @@ body.dark .btn-secondary {
     height: 40px;
   }
   .school-name {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .affiliation {
     font-size: 0.5rem;
@@ -436,7 +436,7 @@ body.dark .btn-secondary {
   }
   .header-content {
     padding: 5px 10px;
-    min-height: 55px;
+    min-height: 58px;
   }
   .logo-container {
     left: 8px;
