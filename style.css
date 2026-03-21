@@ -251,13 +251,14 @@ body.dark #posterBox {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  max-width: 100%;
 }
 
-/* SCHOOL NAME - FIRST LINE ONLY - EXTRA LARGE FONT */
+/* SCHOOL NAME - REDUCED FONT SIZE TO FIT IN HEADER */
 .school-name {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 900;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   line-height: 1.2;
   text-transform: uppercase;
   margin: 0;
@@ -269,7 +270,7 @@ body.dark #posterBox {
 
 /* Affiliation - SECOND LINE ONLY */
 .affiliation {
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   opacity: 0.9;
   line-height: 1.2;
   font-weight: normal;
@@ -417,10 +418,10 @@ body.dark .btn-secondary {
     height: 40px;
   }
   .school-name {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
   .affiliation {
-    font-size: 0.52rem;
+    font-size: 0.5rem;
   }
   .address-line {
     font-size: 0.58rem;
