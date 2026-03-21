@@ -279,7 +279,6 @@ body.dark #posterBox {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align:center;
 }
 
 /* ========= MAIN PHOTO ZONE ========= */
