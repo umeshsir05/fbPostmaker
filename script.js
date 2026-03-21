@@ -198,4 +198,4 @@ resetPhotoToPlaceholder();
 initPlaceholderStyle();
 initDarkMode();
 
-console.log("Poster ready — Logo on LEFT side, text CENTER aligned, proper spacing between logo and text!");
+console.log("Poster ready — Logo on LEFT side, no space between logo & text, reduced header height!");
