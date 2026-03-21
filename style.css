@@ -464,7 +464,6 @@ body.dark .btn-secondary {
 body.dark .menu-drawer {
   background: #262639;
 }
-
 .menu-drawer.open {
   max-height: 250px;
   padding: 1rem;
