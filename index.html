@@ -191,7 +191,7 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED ========= */
+    /* ========= HEADER SECTION - LOGO ON LEFT, TEXT CENTERED, SEPARATED ========= */
     .poster-header {
       background: #0a2f4d;
       padding: 0;
@@ -209,6 +209,7 @@
       padding: 6px 12px;
       margin: 0;
       position: relative;
+      min-height: 70px;
     }
 
     /* Logo container - ABSOLUTE POSITIONED ON LEFT */
@@ -222,6 +223,7 @@
       align-items: center;
       justify-content: center;
       line-height: 0;
+      z-index: 1;
     }
 
     .school-logo {
@@ -230,8 +232,8 @@
       object-fit: contain;
       display: block;
       background: transparent;
-      padding: 1;
-      margin: 1;
+      padding: 0;
+      margin: 0;
       box-shadow: none;
       border-radius: 0;
       image-rendering: -webkit-optimize-contrast;
@@ -248,24 +250,26 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      font-size: 1.7rem;
+      font-size: 1.6rem;
     }
 
-    /* Title section - CENTER ALIGNED */
+    /* Title section - CENTER ALIGNED - NO OVERLAP WITH LOGO */
     .title-section {
       text-align: center;
       margin: 0 auto;
+      padding-left: 70px;
+      padding-right: 12px;
     }
 
     /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
     .school-name {
-      font-size: 1.75rem;
+      font-size: 1.55rem;
       font-weight: 900;
       letter-spacing: 0.5px;
       line-height: 1.1;
       text-transform: uppercase;
-      margin: 1;
-      padding: 1;
+      margin: 0;
+      padding: 0;
     }
 
     /* Affiliation - second line only */
@@ -433,9 +437,14 @@
       }
       .header-content {
         padding: 5px 10px;
+        min-height: 55px;
       }
       .logo-container {
         left: 8px;
+      }
+      .title-section {
+        padding-left: 55px;
+        padding-right: 8px;
       }
       .poster-footer {
         padding: 4px 10px;
@@ -539,7 +548,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Extra large school name</p>
+        <p>Logo file: gldlogo.png | Logo on LEFT side | Text CENTER aligned | Logo and text separated</p>
       </div>
     </div>
 
@@ -553,10 +562,10 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED -->
+    <!-- 1:1 POSTER: LOGO ON LEFT, TEXT CENTERED, SEPARATED -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Logo absolute on left, text centered -->
+        <!-- HEADER: Logo on left, text centered with spacing -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container - ABSOLUTE ON LEFT SIDE -->
@@ -568,7 +577,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - CENTER ALIGNED -->
+            <!-- Title section - CENTER ALIGNED with left padding to avoid logo overlap -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -606,7 +615,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | Extra large school name
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo on LEFT side</strong> | Text CENTER aligned | Logo and text separated with spacing
     </div>
   </div>
 </div>
@@ -812,7 +821,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Logo on LEFT side (absolute position), text CENTER aligned!");
+  console.log("Poster ready — Logo on LEFT side, text CENTER aligned, proper spacing between logo and text!");
 </script>
 </body>
 </html>
