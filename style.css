@@ -180,7 +180,7 @@ body.dark #posterBox {
   background: #1e1e2f;
 }
 
-/* ========= HEADER SECTION - LOGO ON LEFT, TEXT LEFT-ALIGNED, REDUCED SPACING ========= */
+/* ========= HEADER SECTION - MINIMAL LOGO SPACING ========= */
 .poster-header {
   background: #0a2f4d;
   padding: 0;
@@ -201,10 +201,10 @@ body.dark #posterBox {
   min-height: 72px;
 }
 
-/* Logo container - ABSOLUTE POSITIONED ON LEFT */
+/* Logo container - MINIMAL LEFT AND RIGHT SPACE (2px) */
 .logo-container {
   position: absolute;
-  left: 12px;
+  left: 2px;
   top: 50%;
   transform: translateY(-50%);
   flex-shrink: 0;
@@ -242,15 +242,15 @@ body.dark #posterBox {
   font-size: 1.6rem;
 }
 
-/* Title section - LEFT ALIGNED WITH REDUCED SPACING */
+/* Title section - LEFT ALIGNED WITH MINIMAL SPACING FROM LOGO */
 .title-section {
   text-align: left;
-  margin-left: 72px;
+  margin-left: 62px;
   margin-right: 12px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: calc(100% - 84px);
+  max-width: calc(100% - 74px);
   flex: 1;
 }
 
@@ -439,12 +439,12 @@ body.dark .btn-secondary {
     min-height: 58px;
   }
   .logo-container {
-    left: 8px;
+    left: 2px;
   }
   .title-section {
-    margin-left: 55px;
+    margin-left: 48px;
     margin-right: 8px;
-    max-width: calc(100% - 63px);
+    max-width: calc(100% - 56px);
   }
   .poster-footer {
     padding: 4px 10px;
