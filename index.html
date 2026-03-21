@@ -13,7 +13,6 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s;
     }
 
     body {
@@ -192,10 +191,11 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - REDUCED HEIGHT, LARGER LOGO ========= */
+    /* ========= HEADER SECTION - MINIMAL HEIGHT, NO PADDING/MARGIN ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 8px 16px;
+      padding: 0;
+      margin: 0;
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -205,7 +205,9 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px;
+      gap: 10px;
+      padding: 6px 12px;
+      margin: 0;
     }
 
     /* Logo container - larger and clearer */
@@ -218,55 +220,64 @@
     }
 
     .school-logo {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
       object-fit: contain;
       display: block;
       background: transparent;
       padding: 0;
+      margin: 0;
       box-shadow: none;
       border-radius: 0;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
-      image-rendering: pixelated;
       image-rendering: high-quality;
     }
 
     .logo-fallback {
-      width: 65px;
-      height: 65px;
+      width: 55px;
+      height: 55px;
       background: #f7c35c;
       color: #0a2f4d;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
-      border-radius: 8px;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
-    /* Title section - adjusted to align with larger logo */
+    /* Title section - EXACTLY TWO LINES */
     .title-section {
       flex: 1;
       text-align: left;
       line-height: 1.2;
     }
 
-    /* SCHOOL NAME - adjusted size to balance with larger logo */
+    /* SCHOOL NAME - first line */
     .school-name {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 900;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
       line-height: 1.2;
       text-transform: uppercase;
-      margin-bottom: 2px;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    /* Affiliation - second line only */
     .affiliation {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       opacity: 0.9;
       line-height: 1.2;
       font-weight: normal;
+      margin: 0;
+      padding: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* ========= MAIN PHOTO ZONE - PRESERVES ORIGINAL IMAGE SIZE/QUALITY ========= */
@@ -402,14 +413,14 @@
         padding: 1rem;
       }
       .school-logo, .logo-fallback {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
       }
       .school-name {
-        font-size: 1rem;
+        font-size: 0.9rem;
       }
       .affiliation {
-        font-size: 0.52rem;
+        font-size: 0.5rem;
       }
       .address-line {
         font-size: 0.58rem;
@@ -422,14 +433,12 @@
         padding: 8px 18px;
         font-size: 0.8rem;
       }
-      .poster-header {
-        padding: 6px 12px;
+      .header-content {
+        padding: 4px 10px;
+        gap: 8px;
       }
       .poster-footer {
         padding: 4px 10px;
-      }
-      .header-content {
-        gap: 8px;
       }
     }
 
@@ -525,12 +534,12 @@
       </div>
     </div>
 
-    <!-- Logo Info Card - shows that logo is pre-loaded from server -->
+    <!-- Logo Info Card -->
     <div class="logo-info">
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Reduced header height</p>
+        <p>Logo file: gldlogo.png | Minimal header height | Text in exactly two lines</p>
       </div>
     </div>
 
@@ -544,22 +553,22 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LARGER LOGO, REDUCED HEADER HEIGHT, CLEAR QUALITY -->
+    <!-- 1:1 POSTER: MINIMAL HEADER HEIGHT, TWO LINES ONLY -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Reduced height, larger logo on left -->
+        <!-- HEADER: Zero margin/padding, minimal height -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
+            <!-- Logo container -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
-                   style="background: transparent; width: 65px; height: 65px;"
+                   style="background: transparent;"
                    onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
               <div id="logoFallback" class="logo-fallback" style="display: none;">
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - adjusted to align with larger logo -->
+            <!-- Title section - EXACTLY TWO LINES -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -567,17 +576,17 @@
           </div>
         </div>
 
-        <!-- dynamic photo area - your uploaded image sits here with original quality -->
+        <!-- dynamic photo area -->
         <div class="poster-photo" id="posterPhotoArea">
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Larger logo with transparent background</span>
+            <span style="font-size:0.7rem;">Original quality preserved</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
 
-        <!-- FOOTER: REDUCED HEIGHT, location icon included -->
+        <!-- FOOTER -->
         <div class="poster-footer">
           <div class="address-line">
             <i class="fas fa-map-marker-alt"></i> Khairtal Nawagarh, Dist-Janjgir champa (C.G.) Pin-495557
@@ -591,13 +600,13 @@
       </div>
     </div>
 
-    <!-- Action Buttons: Download Poster -->
+    <!-- Action Buttons -->
     <div class="action-buttons">
       <button class="btn" id="downloadPosterBtn"><i class="fas fa-download"></i> Download Poster (PNG)</button>
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px) - crystal clear</strong> | Reduced header height | Rectangular borders
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | Minimal header height | Text in exactly 2 lines | Logo with transparent background
     </div>
   </div>
 </div>
@@ -614,42 +623,33 @@
   const menuToggleBtn = document.getElementById('menuToggleBtn');
   const menuDrawer = document.getElementById('menuDrawer');
   
-  // Logo elements - logo is pre-loaded from server with filename gldlogo.png
+  // Logo elements
   const schoolLogoImg = document.getElementById('schoolLogoImg');
   const logoFallback = document.getElementById('logoFallback');
 
   // ========== LOGO SERVER CONFIGURATION ==========
-  // Logo file: gldlogo.png - place this file in the same directory as this HTML file
-  // Logo size: 65x65px for larger, clearer display
   const SCHOOL_LOGO_PATH = "gldlogo.png";
   
-  // Set logo from server with high quality preservation
   schoolLogoImg.src = SCHOOL_LOGO_PATH;
   schoolLogoImg.style.background = "transparent";
   schoolLogoImg.style.padding = "0";
+  schoolLogoImg.style.margin = "0";
   schoolLogoImg.style.boxShadow = "none";
-  schoolLogoImg.style.width = "65px";
-  schoolLogoImg.style.height = "65px";
-  schoolLogoImg.style.imageRendering = "auto";
   
-  // Handle logo load error - show fallback icon
   schoolLogoImg.onerror = function() {
     console.log("Logo file 'gldlogo.png' not found. Using fallback icon.");
     this.style.display = 'none';
     logoFallback.style.display = 'flex';
   };
   
-  // If logo loads successfully, ensure no white background and clear quality
   schoolLogoImg.onload = function() {
     this.style.display = 'block';
     this.style.background = 'transparent';
     this.style.padding = '0';
+    this.style.margin = '0';
     this.style.boxShadow = 'none';
-    this.style.width = "65px";
-    this.style.height = "65px";
-    this.style.objectFit = "contain";
     logoFallback.style.display = 'none';
-    console.log("Logo loaded successfully with larger size and transparent background");
+    console.log("Logo loaded successfully");
   };
 
   // Main photo functions
@@ -675,7 +675,6 @@
     photoInput.value = '';
   }
 
-  // Main photo upload
   photoInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file && (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg')) {
@@ -699,7 +698,7 @@
   resetPhotoBtn.addEventListener('click', handleReset);
   resetViewBtn.addEventListener('click', handleReset);
 
-  // Download poster as PNG - includes auto-loaded logo from server with transparent background
+  // Download poster
   downloadBtn.addEventListener('click', function() {
     const posterElement = document.getElementById('posterBox');
     const originalBtnText = downloadBtn.innerHTML;
@@ -712,18 +711,7 @@
       logging: false,
       useCORS: true,
       allowTaint: false,
-      crossOrigin: 'anonymous',
-      onclone: (clonedDoc, element) => {
-        // Ensure logo maintains transparent background and larger size in cloned document
-        const clonedLogo = clonedDoc.getElementById('schoolLogoImg');
-        if (clonedLogo) {
-          clonedLogo.style.background = 'transparent';
-          clonedLogo.style.padding = '0';
-          clonedLogo.style.boxShadow = 'none';
-          clonedLogo.style.width = "65px";
-          clonedLogo.style.height = "65px";
-        }
-      }
+      crossOrigin: 'anonymous'
     }).then((canvas) => {
       const link = document.createElement('a');
       link.download = 'GLD_School_Poster_With_Logo.png';
@@ -739,7 +727,7 @@
     });
   });
 
-  // Dark mode functions
+  // Dark mode
   function initDarkMode() {
     const savedTheme = localStorage.getItem('gld_theme');
     if (savedTheme === 'dark') {
@@ -824,7 +812,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Larger logo (65px), reduced header height, transparent background, high quality preserved!");
+  console.log("Poster ready — Minimal header height, zero margin/padding, text in exactly two lines!");
 </script>
 </body>
 </html>
