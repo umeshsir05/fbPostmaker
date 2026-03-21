@@ -208,19 +208,24 @@
       gap: 14px;
     }
 
-    /* Logo container - left side */
+    /* Logo container - left side - NO BACKGROUND */
     .logo-container {
       flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .school-logo {
       width: 52px;
       height: 52px;
       object-fit: contain;
-      background: white;
-      padding: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      border-radius: 8px;
+      display: block;
+      /* Remove white background */
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
     }
 
     .logo-fallback {
@@ -520,7 +525,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Positioned on LEFT side of header | You only need to upload your photo</p>
+        <p>Logo file: gldlogo.png | Transparent background | Positioned on LEFT side | High quality preserved</p>
       </div>
     </div>
 
@@ -534,15 +539,16 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LOGO ON LEFT SIDE, NO CURVED BORDERS, REDUCED FOOTER HEIGHT -->
+    <!-- 1:1 POSTER: LOGO ON LEFT SIDE, NO BACKGROUND, NO CURVED BORDERS -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Logo on LEFT side, school name beside it -->
+        <!-- HEADER: Logo on LEFT side with transparent background -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - LEFT SIDE with gldlogo.png -->
+            <!-- Logo container - LEFT SIDE with gldlogo.png - NO WHITE BACKGROUND -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
+                   style="background: transparent;"
                    onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
               <div id="logoFallback" class="logo-fallback" style="display: none;">
                 <i class="fas fa-school"></i>
@@ -561,7 +567,7 @@
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Logo: gldlogo.png on left side</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Logo: gldlogo.png (transparent background)</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
@@ -586,7 +592,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo: gldlogo.png on LEFT side</strong> | Rectangular borders | School name bold & large | Reduced footer height
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Logo: gldlogo.png (no white background)</strong> | Rectangular borders | School name bold & large | Reduced footer height
     </div>
   </div>
 </div>
@@ -609,11 +615,14 @@
 
   // ========== LOGO SERVER CONFIGURATION ==========
   // Logo file: gldlogo.png - place this file in the same directory as this HTML file
-  // or update the path below to point to your server location
+  // The logo will maintain its original quality with transparent background
   const SCHOOL_LOGO_PATH = "gldlogo.png";
   
-  // Set logo from server
+  // Set logo from server with high quality preservation
   schoolLogoImg.src = SCHOOL_LOGO_PATH;
+  schoolLogoImg.style.background = "transparent";
+  schoolLogoImg.style.padding = "0";
+  schoolLogoImg.style.boxShadow = "none";
   
   // Handle logo load error - show fallback icon
   schoolLogoImg.onerror = function() {
@@ -622,10 +631,14 @@
     logoFallback.style.display = 'flex';
   };
   
-  // If logo loads successfully, hide fallback
+  // If logo loads successfully, ensure no white background
   schoolLogoImg.onload = function() {
     this.style.display = 'block';
+    this.style.background = 'transparent';
+    this.style.padding = '0';
+    this.style.boxShadow = 'none';
     logoFallback.style.display = 'none';
+    console.log("Logo loaded successfully with transparent background");
   };
 
   // Main photo functions
@@ -675,7 +688,7 @@
   resetPhotoBtn.addEventListener('click', handleReset);
   resetViewBtn.addEventListener('click', handleReset);
 
-  // Download poster as PNG - includes auto-loaded logo from server
+  // Download poster as PNG - includes auto-loaded logo from server with transparent background
   downloadBtn.addEventListener('click', function() {
     const posterElement = document.getElementById('posterBox');
     const originalBtnText = downloadBtn.innerHTML;
@@ -688,7 +701,16 @@
       logging: false,
       useCORS: true,  // Important for loading images from server
       allowTaint: false,
-      crossOrigin: 'anonymous'
+      crossOrigin: 'anonymous',
+      onclone: (clonedDoc, element) => {
+        // Ensure logo maintains transparent background in cloned document
+        const clonedLogo = clonedDoc.getElementById('schoolLogoImg');
+        if (clonedLogo) {
+          clonedLogo.style.background = 'transparent';
+          clonedLogo.style.padding = '0';
+          clonedLogo.style.boxShadow = 'none';
+        }
+      }
     }).then((canvas) => {
       const link = document.createElement('a');
       link.download = 'GLD_School_Poster_With_Logo.png';
@@ -789,7 +811,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Logo file: gldlogo.png on LEFT side, rectangular borders, reduced footer height, larger bold school name!");
+  console.log("Poster ready — Logo file: gldlogo.png with transparent background, no white background, high quality preserved on LEFT side!");
 </script>
 </body>
 </html>
