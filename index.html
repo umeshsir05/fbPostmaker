@@ -250,15 +250,15 @@
     .title-section {
       flex: 1;
       text-align: left;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
-    /* SCHOOL NAME - first line */
+    /* SCHOOL NAME - EXTRA LARGE FONT SIZE */
     .school-name {
-      font-size: 1.2rem;
+      font-size: 1.55rem;
       font-weight: 900;
-      letter-spacing: 0.3px;
-      line-height: 1.2;
+      letter-spacing: 0.5px;
+      line-height: 1.1;
       text-transform: uppercase;
       margin: 0;
       padding: 0;
@@ -269,7 +269,7 @@
 
     /* Affiliation - second line only */
     .affiliation {
-      font-size: 0.6rem;
+      font-size: 0.62rem;
       opacity: 0.9;
       line-height: 1.2;
       font-weight: normal;
@@ -417,10 +417,10 @@
         height: 45px;
       }
       .school-name {
-        font-size: 0.9rem;
+        font-size: 1.1rem;
       }
       .affiliation {
-        font-size: 0.5rem;
+        font-size: 0.52rem;
       }
       .address-line {
         font-size: 0.58rem;
@@ -539,7 +539,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Minimal header height | Text in exactly two lines</p>
+        <p>Logo file: gldlogo.png | Extra large school name | Minimal header height | Text in exactly two lines</p>
       </div>
     </div>
 
@@ -553,7 +553,7 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: MINIMAL HEADER HEIGHT, TWO LINES ONLY -->
+    <!-- 1:1 POSTER: EXTRA LARGE SCHOOL NAME, MINIMAL HEADER HEIGHT -->
     <div class="poster-wrapper">
       <div id="posterBox">
         <!-- HEADER: Zero margin/padding, minimal height -->
@@ -568,7 +568,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - EXACTLY TWO LINES -->
+            <!-- Title section - EXACTLY TWO LINES with EXTRA LARGE SCHOOL NAME -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -606,7 +606,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | Minimal header height | Text in exactly 2 lines | Logo with transparent background
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Extra large school name</strong> | Minimal header height | Text in exactly 2 lines | Logo with transparent background
     </div>
   </div>
 </div>
@@ -812,7 +812,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Minimal header height, zero margin/padding, text in exactly two lines!");
+  console.log("Poster ready — Extra large school name (1.55rem), minimal header height, text in exactly two lines!");
 </script>
 </body>
 </html>
