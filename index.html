@@ -192,10 +192,10 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - REDUCED HEIGHT, EXACT 2 LINES ========= */
+    /* ========= HEADER SECTION - REDUCED HEIGHT, LARGER SCHOOL NAME ADJUSTED ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 4px 12px;        /* reduced vertical padding: was 8px → now 4px for slimmer header */
+      padding: 6px 12px;        /* slight increase to accommodate possible text wrap */
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -205,10 +205,10 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 10px;                /* slight gap reduction helps compactness */
+      gap: 12px;
     }
 
-    /* Logo container - larger and clearer (unchanged from original) */
+    /* Logo container - larger and clearer */
     .logo-container {
       flex-shrink: 0;
       display: flex;
@@ -218,8 +218,8 @@
     }
 
     .school-logo {
-      width: 55px;
-      height: 55px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
       display: block;
       background: transparent;
@@ -245,39 +245,35 @@
       font-size: 1.8rem;
     }
 
-    /* Title section - now forces exactly two lines: school name + affiliation */
+    /* Title section - flexible to handle larger school name */
     .title-section {
       flex: 1;
       text-align: left;
       line-height: 1.2;
-      /* allow horizontal scroll if text overflows on extremely small devices, 
-         but keep them as single lines without wrapping */
-      overflow-x: auto;
-      white-space: normal;      /* container itself can scroll, children prevent wrapping */
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
+      min-width: 0; /* allow shrinking */
     }
 
-    /* SCHOOL NAME: forced single line */
+    /* SCHOOL NAME - larger, responsive, wraps if needed */
     .school-name {
-      font-size: 1.35rem;       /* slightly reduced from 1.35rem for better fit + reduced header height */
+      font-size: clamp(1.2rem, 5vw, 1.8rem);  /* larger but scales on small screens */
       font-weight: 900;
-      letter-spacing: 0.3px;
       line-height: 1.2;
       text-transform: uppercase;
-      margin-bottom: 1px;
-      white-space: nowrap;      /* ensures no wrapping → stays on 1 line */
+      margin-bottom: 2px;
+      white-space: normal;          /* allow wrapping to avoid overflow */
+      word-break: break-word;
       display: block;
       text-align: left;
     }
 
-    /* Affiliation line: forced single line */
+    /* Affiliation line - stays separate, can also wrap if needed */
     .affiliation {
       font-size: 0.65rem;
       opacity: 0.9;
       line-height: 1.25;
       font-weight: normal;
-      white-space: nowrap;      /* keeps affiliation on one separate line → exactly second line */
+      white-space: normal;
+      word-break: break-word;
       display: block;
       text-align: left;
     }
@@ -406,7 +402,7 @@
       opacity: 0.9;
     }
 
-    /* ========= MOBILE ADJUSTMENTS: ensure school name & affiliation remain two single lines ========= */
+    /* ========= MOBILE ADJUSTMENTS: ensure school name scales well ========= */
     @media (max-width: 550px) {
       body {
         padding: 0.8rem;
@@ -418,15 +414,12 @@
         width: 50px;
         height: 50px;
       }
-      /* reduce font sizes for small screens so that both lines still fit without wrapping 
-         (white-space: nowrap forces single line, but we scale down text to prevent overflow) */
+      /* school name already uses clamp, but we can adjust min font size if needed */
       .school-name {
-        font-size: 0.92rem;      /* compact but still legible, prevents overflow on 320px screens */
-        letter-spacing: 0px;
+        font-size: clamp(1rem, 5vw, 1.4rem);
       }
       .affiliation {
         font-size: 0.52rem;
-        letter-spacing: -0.2px;
       }
       .address-line {
         font-size: 0.58rem;
@@ -440,26 +433,13 @@
         font-size: 0.8rem;
       }
       .poster-header {
-        padding: 3px 10px;       /* even smaller padding on mobile to reduce height */
+        padding: 4px 10px;
       }
       .header-content {
-        gap: 6px;
+        gap: 8px;
       }
       .poster-footer {
         padding: 4px 8px;
-      }
-      .title-section {
-        overflow-x: auto;        /* enable horizontal scroll on super narrow if needed, but lines never wrap */
-      }
-    }
-
-    /* For very narrow devices (< 400px) extra fine tuning - keep 2 lines guaranteed */
-    @media (max-width: 450px) {
-      .school-name {
-        font-size: 0.82rem;
-      }
-      .affiliation {
-        font-size: 0.48rem;
       }
     }
 
@@ -560,7 +540,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Slim header & exact two-line text</p>
+        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | School name now bigger and adjusts to logo</p>
       </div>
     </div>
 
@@ -574,10 +554,10 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LARGER LOGO, REDUCED HEADER HEIGHT, EXACT TWO LINES FOR TITLE+ AFFILIATION -->
+    <!-- 1:1 POSTER: LARGER LOGO, ADJUSTED SCHOOL NAME SIZE -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: compact padding, forced single-line school name and affiliation -->
+        <!-- HEADER: compact but adaptable to larger text -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
@@ -589,7 +569,7 @@
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section: school name and affiliation each forced to single line (exactly two lines total) -->
+            <!-- Title section: school name now larger and can wrap, affiliation separate -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -627,7 +607,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px) - crystal clear</strong> | Slim header | <strong>School name & affiliation on exactly 2 lines</strong>
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px)</strong> | <strong>School name now larger & responsive</strong> | Auto-adjusts to header
     </div>
   </div>
 </div>
@@ -649,11 +629,8 @@
   const logoFallback = document.getElementById('logoFallback');
 
   // ========== LOGO SERVER CONFIGURATION ==========
-  // Logo file: gldlogo.png - place this file in the same directory as this HTML file
-  // Logo size: 65x65px for larger, clearer display
   const SCHOOL_LOGO_PATH = "gldlogo.png";
   
-  // Set logo from server with high quality preservation
   schoolLogoImg.src = SCHOOL_LOGO_PATH;
   schoolLogoImg.style.background = "transparent";
   schoolLogoImg.style.padding = "0";
@@ -662,14 +639,12 @@
   schoolLogoImg.style.height = "65px";
   schoolLogoImg.style.imageRendering = "auto";
   
-  // Handle logo load error - show fallback icon
   schoolLogoImg.onerror = function() {
     console.log("Logo file 'gldlogo.png' not found. Using fallback icon.");
     this.style.display = 'none';
     logoFallback.style.display = 'flex';
   };
   
-  // If logo loads successfully, ensure no white background and clear quality
   schoolLogoImg.onload = function() {
     this.style.display = 'block';
     this.style.background = 'transparent';
@@ -705,7 +680,6 @@
     photoInput.value = '';
   }
 
-  // Main photo upload
   photoInput.addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file && (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/jpg')) {
@@ -729,7 +703,7 @@
   resetPhotoBtn.addEventListener('click', handleReset);
   resetViewBtn.addEventListener('click', handleReset);
 
-  // Download poster as PNG - includes auto-loaded logo from server with transparent background
+  // Download poster as PNG
   downloadBtn.addEventListener('click', function() {
     const posterElement = document.getElementById('posterBox');
     const originalBtnText = downloadBtn.innerHTML;
@@ -744,7 +718,6 @@
       allowTaint: false,
       crossOrigin: 'anonymous',
       onclone: (clonedDoc, element) => {
-        // Ensure logo maintains transparent background and larger size in cloned document
         const clonedLogo = clonedDoc.getElementById('schoolLogoImg');
         if (clonedLogo) {
           clonedLogo.style.background = 'transparent';
@@ -753,7 +726,6 @@
           clonedLogo.style.width = "65px";
           clonedLogo.style.height = "65px";
         }
-        // also preserve two-line behavior (already forced via inline styles)
       }
     }).then((canvas) => {
       const link = document.createElement('a');
@@ -855,7 +827,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Slim header, larger logo, school name & affiliation forced as exactly two separate lines!");
+  console.log("Poster ready — School name now larger, responsive, and fits well with logo!");
 </script>
 </body>
 </html>
