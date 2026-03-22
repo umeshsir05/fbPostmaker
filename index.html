@@ -210,7 +210,7 @@
       padding: 0;
     }
 
-    /* Logo container - larger and clearer (unchanged size) */
+    /* Logo container - LARGER LOGO size REDUCED BY 25% (from 65px to 49px) */
     .logo-container {
       flex-shrink: 0;
       display: flex;
@@ -221,9 +221,10 @@
       padding: 0;
     }
 
+    /* UPDATED: School logo original size reduced by 25% (from 65px to 49px) */
     .school-logo {
-      width: 36px;
-      height: 36px;
+      width: 49px;
+      height: 49px;
       object-fit: contain;
       display: block;
       background: transparent;
@@ -236,9 +237,10 @@
       margin: 0;
     }
 
+    /* UPDATED: Fallback icon also matches new logo size (49px) */
     .logo-fallback {
-      width: 36px;
-      height: 36px;
+      width: 49px;
+      height: 49px;
       background: #f7c35c;
       color: #0a2f4d;
       display: flex;
@@ -409,7 +411,7 @@
       opacity: 0.9;
     }
 
-    /* mobile adjustments - maintain minimal header height on small screens */
+    /* mobile adjustments - maintain proportional logo size reduction by 25% */
     @media (max-width: 550px) {
       body {
         padding: 0.8rem;
@@ -417,9 +419,10 @@
       .card {
         padding: 1rem;
       }
+      /* UPDATED: Mobile logo size reduced by 25% (original 50px -> 38px) */
       .school-logo, .logo-fallback {
-        width: 50px;
-        height: 50px;
+        width: 38px;
+        height: 38px;
       }
       .school-name {
         font-size: 1rem;
@@ -547,7 +550,7 @@
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Minimal header height</p>
+        <p>Logo file: gldlogo.png | Size reduced by 25% (crisp & clear) | Transparent background | Minimal header height</p>
       </div>
     </div>
 
@@ -561,16 +564,16 @@
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: REDUCED HEADER HEIGHT, NO EXTRA MARGINS/PADDINGS, TWO LINES TEXT -->
+    <!-- 1:1 POSTER: REDUCED HEADER HEIGHT, ZERO EXTRA MARGINS, LOGO SIZE REDUCED BY 25% -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Zero padding, minimal gap, logo + two-line text compact -->
+        <!-- HEADER: Zero padding, minimal gap, logo size reduced -->
         <div class="poster-header">
           <div class="header-content">
-            <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
+            <!-- Logo container - NEW SIZE: 49px (25% reduction from 65px) -->
             <div class="logo-container">
               <img id="schoolLogoImg" class="school-logo" src="gldlogo.png" alt="School Logo" 
-                   style="background: transparent; width: 36px; height: 36px;"
+                   style="background: transparent; width: 49px; height: 49px; object-fit: contain;"
                    onerror="this.onerror=null; this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
               <div id="logoFallback" class="logo-fallback" style="display: none;">
                 <i class="fas fa-school"></i>
@@ -589,7 +592,7 @@
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-camera" style="font-size:2rem; opacity:0.6;"></i>
             <p>Your photo will appear here</p>
-            <span style="font-size:0.7rem;">Original quality preserved | Larger logo with transparent background</span>
+            <span style="font-size:0.7rem;">Original quality preserved | Logo size -25% (clean & balanced)</span>
           </div>
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
@@ -614,7 +617,7 @@
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Minimal header height & zero padding</strong> | Two-line text | Larger crystal logo
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Minimal header & zero padding</strong> | Two-line text | Logo size -25% (crisp)
     </div>
   </div>
 </div>
@@ -631,42 +634,43 @@
   const menuToggleBtn = document.getElementById('menuToggleBtn');
   const menuDrawer = document.getElementById('menuDrawer');
   
-  // Logo elements - logo is pre-loaded from server with filename gldlogo.png
+  // Logo elements - logo pre-loaded from server with filename gldlogo.png
   const schoolLogoImg = document.getElementById('schoolLogoImg');
   const logoFallback = document.getElementById('logoFallback');
 
   // ========== LOGO SERVER CONFIGURATION ==========
-  // Logo file: gldlogo.png - place this file in the same directory as this HTML file
-  // Logo size: 65x65px for larger, clearer display
+  // Logo file: gldlogo.png - placed in same directory
+  // Logo size reduced by 25%: previous 65px -> 49px (65 * 0.75 = 48.75 ~ 49px)
   const SCHOOL_LOGO_PATH = "gldlogo.png";
   
-  // Set logo from server with high quality preservation
+  // Apply new logo dimensions (25% reduction) with high quality
   schoolLogoImg.src = SCHOOL_LOGO_PATH;
   schoolLogoImg.style.background = "transparent";
   schoolLogoImg.style.padding = "0";
   schoolLogoImg.style.boxShadow = "none";
-  schoolLogoImg.style.width = "65px";
-  schoolLogoImg.style.height = "65px";
+  schoolLogoImg.style.width = "49px";
+  schoolLogoImg.style.height = "49px";
   schoolLogoImg.style.imageRendering = "auto";
+  schoolLogoImg.style.objectFit = "contain";
   
-  // Handle logo load error - show fallback icon
+  // Handle logo load error - fallback icon with same reduced size
   schoolLogoImg.onerror = function() {
-    console.log("Logo file 'gldlogo.png' not found. Using fallback icon.");
+    console.log("Logo file 'gldlogo.png' not found. Using fallback icon (size reduced).");
     this.style.display = 'none';
     logoFallback.style.display = 'flex';
   };
   
-  // If logo loads successfully, ensure no white background and clear quality
+  // If logo loads successfully, ensure correct reduced size and transparent background
   schoolLogoImg.onload = function() {
     this.style.display = 'block';
     this.style.background = 'transparent';
     this.style.padding = '0';
     this.style.boxShadow = 'none';
-    this.style.width = "65px";
-    this.style.height = "65px";
+    this.style.width = "49px";
+    this.style.height = "49px";
     this.style.objectFit = "contain";
     logoFallback.style.display = 'none';
-    console.log("Logo loaded successfully with larger size and transparent background");
+    console.log("Logo loaded with 25% reduced size (49px) and transparent background");
   };
 
   // Main photo functions
@@ -716,7 +720,7 @@
   resetPhotoBtn.addEventListener('click', handleReset);
   resetViewBtn.addEventListener('click', handleReset);
 
-  // Download poster as PNG - includes auto-loaded logo from server with transparent background
+  // Download poster as PNG - includes auto-loaded logo with new reduced size (49px)
   downloadBtn.addEventListener('click', function() {
     const posterElement = document.getElementById('posterBox');
     const originalBtnText = downloadBtn.innerHTML;
@@ -731,14 +735,21 @@
       allowTaint: false,
       crossOrigin: 'anonymous',
       onclone: (clonedDoc, element) => {
-        // Ensure logo maintains transparent background and larger size in cloned document
+        // Ensure logo maintains reduced size (49px) and transparent background in cloned poster
         const clonedLogo = clonedDoc.getElementById('schoolLogoImg');
         if (clonedLogo) {
           clonedLogo.style.background = 'transparent';
           clonedLogo.style.padding = '0';
           clonedLogo.style.boxShadow = 'none';
-          clonedLogo.style.width = "65px";
-          clonedLogo.style.height = "65px";
+          clonedLogo.style.width = "49px";
+          clonedLogo.style.height = "49px";
+          clonedLogo.style.objectFit = "contain";
+        }
+        // Also ensure fallback matches size if present
+        const clonedFallback = clonedDoc.getElementById('logoFallback');
+        if (clonedFallback && clonedFallback.style.display !== 'none') {
+          clonedFallback.style.width = "49px";
+          clonedFallback.style.height = "49px";
         }
         // Also ensure header cloned elements have minimal spacing
         const clonedHeader = clonedDoc.querySelector('.poster-header');
@@ -849,7 +860,7 @@
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Minimal header height (zero padding), two-line text, larger logo, high quality preserved!");
+  console.log("✅ Poster ready — Logo size reduced by 25% (now 49px). Header minimal, other codes untouched.");
 </script>
 </body>
 </html>
