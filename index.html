@@ -192,10 +192,10 @@
       background: #1e1e2f;
     }
 
-    /* ========= HEADER SECTION - REDUCED HEIGHT, LARGER LOGO ========= */
+    /* ========= HEADER SECTION - REDUCED HEIGHT, ZERO EXTRA MARGIN/PADDING ========= */
     .poster-header {
       background: #0a2f4d;
-      padding: 2px 4px;
+      padding: 0;              /* REMOVED all padding -> reduces header height drastically */
       color: white;
       border-bottom: 3px solid #f7c35c;
       flex-shrink: 0;
@@ -205,21 +205,25 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      gap: 5px;
+      gap: 6px;               /* minimal gap, only to separate logo from text */
+      margin: 0;
+      padding: 0;
     }
 
-    /* Logo container - larger and clearer */
+    /* Logo container - larger and clearer (unchanged size) */
     .logo-container {
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       line-height: 0;
+      margin: 0;
+      padding: 0;
     }
 
     .school-logo {
-      width: 40px;
-      height: 40px;
+      width: 65px;
+      height: 65px;
       object-fit: contain;
       display: block;
       background: transparent;
@@ -228,39 +232,47 @@
       border-radius: 0;
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
-      image-rendering: pixelated;
       image-rendering: high-quality;
+      margin: 0;
     }
 
     .logo-fallback {
-      width: 40px;
-      height: 40px;
+      width: 65px;
+      height: 65px;
       background: #f7c35c;
       color: #0a2f4d;
       display: flex;
-      align-items:right;
-      justify-content: right ;
+      align-items: center;
+      justify-content: center;
       font-weight: bold;
       border-radius: 4px;
       font-size: 1.8rem;
+      margin: 0;
     }
 
-    /* Title section - adjusted to align with larger logo */
+    /* Title section - ZERO margin/padding, forces two lines without spacing overhead */
     .title-section {
       flex: 1;
-      text-align: justify;
+      text-align: center;
       line-height: 1.2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    /* SCHOOL NAME - adjusted size to balance with larger logo */
+    /* SCHOOL NAME - two lines naturally, no extra margins, reduced line-height */
     .school-name {
       font-size: 1.35rem;
       font-weight: 900;
       letter-spacing: 0.5px;
-      line-height: 40px;
+      line-height: 1.2;          /* removed large line-height (was 40px) to reduce height */
       text-transform: uppercase;
-      margin-bottom: 2px;
-text-align:center;
+      margin: 0;                 /* zero margin */
+      padding: 0;
+      white-space: normal;
+      word-break: break-word;
     }
 
     .affiliation {
@@ -268,6 +280,9 @@ text-align:center;
       opacity: 0.9;
       line-height: 1.2;
       font-weight: normal;
+      margin: 0;                /* zero margin */
+      padding: 0;
+      white-space: normal;
     }
 
     /* ========= MAIN PHOTO ZONE - PRESERVES ORIGINAL IMAGE SIZE/QUALITY ========= */
@@ -309,7 +324,7 @@ text-align:center;
       background: #2a2a38;
     }
 
-    /* ========= FOOTER SECTION - REDUCED HEIGHT ========= */
+    /* ========= FOOTER SECTION - REDUCED HEIGHT (already minimal) ========= */
     .poster-footer {
       background: #0a2f4d;
       padding: 5px 12px;
@@ -394,7 +409,7 @@ text-align:center;
       opacity: 0.9;
     }
 
-    /* mobile adjustments */
+    /* mobile adjustments - maintain minimal header height on small screens */
     @media (max-width: 550px) {
       body {
         padding: 0.8rem;
@@ -408,6 +423,7 @@ text-align:center;
       }
       .school-name {
         font-size: 1rem;
+        line-height: 1.2;
       }
       .affiliation {
         font-size: 0.52rem;
@@ -424,13 +440,13 @@ text-align:center;
         font-size: 0.8rem;
       }
       .poster-header {
-        padding: 6px 12px;
+        padding: 0;
+      }
+      .header-content {
+        gap: 4px;
       }
       .poster-footer {
         padding: 4px 10px;
-      }
-      .header-content {
-        gap: 8px;
       }
     }
 
@@ -531,7 +547,7 @@ text-align:center;
       <i class="fas fa-check-circle"></i>
       <div class="logo-info-text">
         <h4><i class="fas fa-school"></i> School Logo (Auto-loaded from Server)</h4>
-        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Reduced header height</p>
+        <p>Logo file: gldlogo.png | Larger & clearer | Transparent background | Minimal header height</p>
       </div>
     </div>
 
@@ -545,10 +561,10 @@ text-align:center;
       <input type="file" id="photoInput" accept="image/jpeg, image/png, image/jpg">
     </div>
 
-    <!-- 1:1 POSTER: LARGER LOGO, REDUCED HEADER HEIGHT, CLEAR QUALITY -->
+    <!-- 1:1 POSTER: REDUCED HEADER HEIGHT, NO EXTRA MARGINS/PADDINGS, TWO LINES TEXT -->
     <div class="poster-wrapper">
       <div id="posterBox">
-        <!-- HEADER: Reduced height, larger logo on left -->
+        <!-- HEADER: Zero padding, minimal gap, logo + two-line text compact -->
         <div class="poster-header">
           <div class="header-content">
             <!-- Logo container - LARGER and CLEARER with gldlogo.png -->
@@ -560,7 +576,7 @@ text-align:center;
                 <i class="fas fa-school"></i>
               </div>
             </div>
-            <!-- Title section - adjusted to align with larger logo -->
+            <!-- Title section: two natural lines with zero margins/paddings -->
             <div class="title-section">
               <div class="school-name">GLD PUBLIC SCHOOL, KHAIRTAL</div>
               <div class="affiliation">Affiliated to CBSE Board New Delhi | Affiliation no 3330518</div>
@@ -578,7 +594,7 @@ text-align:center;
           <img id="dynamicPhoto" style="display: none; width:100%; height:100%; object-fit:contain;" alt="uploaded photo">
         </div>
 
-        <!-- FOOTER: REDUCED HEIGHT, location icon included -->
+        <!-- FOOTER: unchanged, already minimal -->
         <div class="poster-footer">
           <div class="address-line">
             <i class="fas fa-map-marker-alt"></i> Khairtal Nawagarh, Dist-Janjgir champa (C.G.) Pin-495557
@@ -598,7 +614,7 @@ text-align:center;
       <button class="btn btn-secondary" id="resetViewBtn"><i class="fas fa-sync-alt"></i> Remove Photo</button>
     </div>
     <div class="info-text">
-      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Larger logo (65px) - crystal clear</strong> | Reduced header height | Rectangular borders
+      <i class="fas fa-crop-alt"></i> 1:1 square poster | <strong>Minimal header height & zero padding</strong> | Two-line text | Larger crystal logo
     </div>
   </div>
 </div>
@@ -724,6 +740,14 @@ text-align:center;
           clonedLogo.style.width = "65px";
           clonedLogo.style.height = "65px";
         }
+        // Also ensure header cloned elements have minimal spacing
+        const clonedHeader = clonedDoc.querySelector('.poster-header');
+        if (clonedHeader) clonedHeader.style.padding = '0';
+        const clonedTitleSection = clonedDoc.querySelector('.title-section');
+        if (clonedTitleSection) {
+          clonedTitleSection.style.margin = '0';
+          clonedTitleSection.style.padding = '0';
+        }
       }
     }).then((canvas) => {
       const link = document.createElement('a');
@@ -825,7 +849,7 @@ text-align:center;
   initPlaceholderStyle();
   initDarkMode();
   
-  console.log("Poster ready — Larger logo (65px), reduced header height, transparent background, high quality preserved!");
+  console.log("Poster ready — Minimal header height (zero padding), two-line text, larger logo, high quality preserved!");
 </script>
 </body>
 </html>
