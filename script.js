@@ -86,7 +86,7 @@ function handleReset() {
 resetPhotoBtn.addEventListener('click', handleReset);
 resetViewBtn.addEventListener('click', handleReset);
 
-// ========== MOBILE-FRIENDLY POSTER SAVING ==========
+// ========== UNIVERSAL MOBILE SAVING ==========
 function showPosterModal(imageDataUrl) {
     // Remove existing modal if any
     const oldModal = document.getElementById('posterModal');
@@ -101,12 +101,14 @@ function showPosterModal(imageDataUrl) {
             <span class="close-modal">&times;</span>
             <h3>📸 Your Poster is Ready</h3>
             <div class="modal-image-container">
-                <img id="modalPosterImg" src="${imageDataUrl}" alt="Poster" style="max-width:100%; max-height:60vh; object-fit:contain; border-radius:8px;">
+                <img id="modalPosterImg" src="${imageDataUrl}" alt="Poster" style="max-width:100%; max-height:50vh; object-fit:contain; border-radius:8px; -webkit-touch-callout: default; user-select: auto;">
             </div>
             <div class="modal-actions">
-                <button id="sharePosterBtn" class="share-modal-btn"><i class="fas fa-share-alt"></i> Share</button>
+                <button id="saveImageBtn" class="save-modal-btn"><i class="fas fa-download"></i> Save Image</button>
+                <button id="copyImageBtn" class="copy-modal-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
                 <p class="modal-note">
-                    <i class="fas fa-fingerprint"></i> <strong>To save:</strong> Long-press the image above and choose "Save Image".
+                    <i class="fas fa-fingerprint"></i> <strong>Long-press the image</strong> → "Save Image"<br>
+                    <i class="fas fa-mobile-alt"></i> If buttons fail, take a <strong>screenshot</strong>.
                 </p>
             </div>
         </div>
@@ -123,7 +125,7 @@ function showPosterModal(imageDataUrl) {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.95);
             z-index: 10000;
             justify-content: center;
             align-items: center;
@@ -160,24 +162,34 @@ function showPosterModal(imageDataUrl) {
         }
         .poster-modal .modal-image-container {
             overflow: auto;
-            max-height: 65vh;
+            max-height: 55vh;
         }
-        .poster-modal .share-modal-btn {
-            background: #2196F3;
-            color: white;
+        .poster-modal .save-modal-btn, .poster-modal .copy-modal-btn {
             border: none;
             padding: 12px 24px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s;
             width: 100%;
+            margin-bottom: 8px;
         }
-        .poster-modal .share-modal-btn:hover {
+        .poster-modal .save-modal-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        .poster-modal .save-modal-btn:hover {
+            background: #45a049;
+        }
+        .poster-modal .copy-modal-btn {
+            background: #2196F3;
+            color: white;
+        }
+        .poster-modal .copy-modal-btn:hover {
             background: #0b7dda;
         }
         .poster-modal .modal-note {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             opacity: 0.9;
             margin: 5px 0 0;
             background: #f0f0f0;
@@ -191,6 +203,13 @@ function showPosterModal(imageDataUrl) {
         body.dark .poster-modal .modal-note {
             background: #2a2a38;
         }
+        /* Ensure long-press works */
+        #modalPosterImg {
+            -webkit-touch-callout: default !important;
+            -webkit-user-select: auto !important;
+            user-select: auto !important;
+            pointer-events: auto !important;
+        }
     `;
     document.head.appendChild(style);
 
@@ -201,28 +220,47 @@ function showPosterModal(imageDataUrl) {
         if (e.target === modal) modal.remove();
     });
 
-    // Share button (uses Web Share API if available)
-    const shareBtn = document.getElementById('sharePosterBtn');
-    shareBtn.addEventListener('click', async () => {
+    // Helper: trigger download
+    function triggerDownload(dataUrl, filename) {
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = dataUrl;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Save Image button
+    const saveBtn = document.getElementById('saveImageBtn');
+    saveBtn.addEventListener('click', () => {
         try {
-            // Convert dataURL to blob for sharing
+            triggerDownload(imageDataUrl, 'GLD_School_Poster.png');
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            setTimeout(() => {
+                saveBtn.innerHTML = '<i class="fas fa-download"></i> Save Image';
+            }, 2000);
+        } catch (e) {
+            alert('Auto-save failed. Please long-press the image or take a screenshot.');
+        }
+    });
+
+    // Copy to Clipboard button
+    const copyBtn = document.getElementById('copyImageBtn');
+    copyBtn.addEventListener('click', async () => {
+        try {
             const blob = await (await fetch(imageDataUrl)).blob();
-            const file = new File([blob], 'GLD_Poster.png', { type: 'image/png' });
-            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    title: 'GLD School Poster',
-                    text: 'Check out my poster!',
-                    files: [file]
-                });
-            } else {
-                // Fallback: open in new tab
-                window.open(imageDataUrl, '_blank');
-                alert('Share not supported. Image opened in new tab — long-press to save.');
-            }
+            await navigator.clipboard.write([
+                new ClipboardItem({
+                    [blob.type]: blob
+                })
+            ]);
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            setTimeout(() => {
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy to Clipboard';
+            }, 2000);
         } catch (err) {
-            console.warn('Share failed:', err);
-            window.open(imageDataUrl, '_blank');
-            alert('Image opened in new tab — long-press to save.');
+            console.warn('Copy failed:', err);
+            alert('Copy not supported. Please long-press the image or take a screenshot.');
         }
     });
 }
@@ -234,9 +272,9 @@ downloadBtn.addEventListener('click', async function() {
     downloadBtn.disabled = true;
 
     try {
-        // Use scale:1.5 to avoid memory crashes on low-end mobiles
+        // Scale reduced to 1.2 for low-memory devices
         const canvas = await html2canvas(posterElement, {
-            scale: 1.5,
+            scale: 1.2,
             backgroundColor: null,
             logging: false,
             useCORS: false,
@@ -268,13 +306,13 @@ downloadBtn.addEventListener('click', async function() {
 
     } catch (error) {
         console.error('Poster generation error:', error);
-        alert('Failed to generate poster. Please check console for details.\n\nPossible cause: The logo image might not be accessible.');
+        alert('Failed to generate poster. Please check:\n- Logo file exists (gldlogo.png)\n- Image upload works\n- Try again with a smaller photo');
     } finally {
         downloadBtn.innerHTML = originalText;
         downloadBtn.disabled = false;
     }
 });
-// ========== END POSTER SAVING ==========
+// ========== END SAVING ==========
 
 // Dark mode functions
 function initDarkMode() {
@@ -362,4 +400,4 @@ window.addEventListener('resize', () => {
 resetPhotoToPlaceholder();
 initPlaceholderStyle();
 initDarkMode();
-console.log("✅ Poster app ready — Mobile saving: long-press the image in the modal.");
+console.log("✅ Poster app ready — Multiple save methods available.");
