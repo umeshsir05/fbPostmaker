@@ -86,185 +86,7 @@ function handleReset() {
 resetPhotoBtn.addEventListener('click', handleReset);
 resetViewBtn.addEventListener('click', handleReset);
 
-// ========== UNIVERSAL MOBILE SAVING ==========
-function showPosterModal(imageDataUrl) {
-    // Remove existing modal if any
-    const oldModal = document.getElementById('posterModal');
-    if (oldModal) oldModal.remove();
-
-    // Create modal
-    const modal = document.createElement('div');
-    modal.id = 'posterModal';
-    modal.className = 'poster-modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h3>📸 Your Poster is Ready</h3>
-            <div class="modal-image-container">
-                <img id="modalPosterImg" src="${imageDataUrl}" alt="Poster" style="max-width:100%; max-height:50vh; object-fit:contain; border-radius:8px; -webkit-touch-callout: default; user-select: auto;">
-            </div>
-            <div class="modal-actions">
-                <button id="saveImageBtn" class="save-modal-btn"><i class="fas fa-download"></i> Save Image</button>
-                <button id="copyImageBtn" class="copy-modal-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
-                <p class="modal-note">
-                    <i class="fas fa-fingerprint"></i> <strong>Long-press the image</strong> → "Save Image"<br>
-                    <i class="fas fa-mobile-alt"></i> If buttons fail, take a <strong>screenshot</strong>.
-                </p>
-            </div>
-        </div>
-    `;
-    document.body.appendChild(modal);
-
-    // Add styles
-    const style = document.createElement('style');
-    style.textContent = `
-        .poster-modal {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-        }
-        .poster-modal .modal-content {
-            background: var(--bg-color, white);
-            color: var(--text-color, black);
-            max-width: 95%;
-            max-height: 90%;
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        .poster-modal .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #fff;
-            background: rgba(0,0,0,0.6);
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            z-index: 10001;
-        }
-        .poster-modal .modal-image-container {
-            overflow: auto;
-            max-height: 55vh;
-        }
-        .poster-modal .save-modal-btn, .poster-modal .copy-modal-btn {
-            border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            width: 100%;
-            margin-bottom: 8px;
-        }
-        .poster-modal .save-modal-btn {
-            background: #4CAF50;
-            color: white;
-        }
-        .poster-modal .save-modal-btn:hover {
-            background: #45a049;
-        }
-        .poster-modal .copy-modal-btn {
-            background: #2196F3;
-            color: white;
-        }
-        .poster-modal .copy-modal-btn:hover {
-            background: #0b7dda;
-        }
-        .poster-modal .modal-note {
-            font-size: 0.85rem;
-            opacity: 0.9;
-            margin: 5px 0 0;
-            background: #f0f0f0;
-            padding: 8px;
-            border-radius: 8px;
-        }
-        body.dark .poster-modal .modal-content {
-            background: #1e1e2a;
-            color: #f0f0f0;
-        }
-        body.dark .poster-modal .modal-note {
-            background: #2a2a38;
-        }
-        /* Ensure long-press works */
-        #modalPosterImg {
-            -webkit-touch-callout: default !important;
-            -webkit-user-select: auto !important;
-            user-select: auto !important;
-            pointer-events: auto !important;
-        }
-    `;
-    document.head.appendChild(style);
-
-    // Close modal
-    const closeBtn = modal.querySelector('.close-modal');
-    closeBtn.onclick = () => modal.remove();
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.remove();
-    });
-
-    // Helper: trigger download
-    function triggerDownload(dataUrl, filename) {
-        const link = document.createElement('a');
-        link.download = filename;
-        link.href = dataUrl;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }
-
-    // Save Image button
-    const saveBtn = document.getElementById('saveImageBtn');
-    saveBtn.addEventListener('click', () => {
-        try {
-            triggerDownload(imageDataUrl, 'GLD_School_Poster.png');
-            saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
-            setTimeout(() => {
-                saveBtn.innerHTML = '<i class="fas fa-download"></i> Save Image';
-            }, 2000);
-        } catch (e) {
-            alert('Auto-save failed. Please long-press the image or take a screenshot.');
-        }
-    });
-
-    // Copy to Clipboard button
-    const copyBtn = document.getElementById('copyImageBtn');
-    copyBtn.addEventListener('click', async () => {
-        try {
-            const blob = await (await fetch(imageDataUrl)).blob();
-            await navigator.clipboard.write([
-                new ClipboardItem({
-                    [blob.type]: blob
-                })
-            ]);
-            copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => {
-                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy to Clipboard';
-            }, 2000);
-        } catch (err) {
-            console.warn('Copy failed:', err);
-            alert('Copy not supported. Please long-press the image or take a screenshot.');
-        }
-    });
-}
-
+// ========== SIMPLEST MOBILE SAVING: OPEN IN NEW TAB ==========
 downloadBtn.addEventListener('click', async function() {
     const posterElement = document.getElementById('posterBox');
     const originalText = downloadBtn.innerHTML;
@@ -272,9 +94,9 @@ downloadBtn.addEventListener('click', async function() {
     downloadBtn.disabled = true;
 
     try {
-        // Scale reduced to 1.2 for low-memory devices
+        // Use a scale that balances quality and memory (1.5 is safe)
         const canvas = await html2canvas(posterElement, {
-            scale: 1.2,
+            scale: 1.5,
             backgroundColor: null,
             logging: false,
             useCORS: false,
@@ -302,11 +124,55 @@ downloadBtn.addEventListener('click', async function() {
         });
 
         const imageDataUrl = canvas.toDataURL('image/png');
-        showPosterModal(imageDataUrl);
-
+        
+        // === METHOD 1: Open in new tab (works on every mobile browser) ===
+        const newTab = window.open();
+        if (newTab) {
+            newTab.document.write(`
+                <html>
+                <head>
+                    <title>GLD Poster - Save Image</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <style>
+                        body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #000; }
+                        img { max-width: 100%; max-height: 100vh; object-fit: contain; }
+                        .instruction { position: fixed; bottom: 20px; left: 0; right: 0; text-align: center; background: rgba(0,0,0,0.7); color: white; padding: 12px; font-family: sans-serif; font-size: 14px; }
+                    </style>
+                </head>
+                <body>
+                    <img src="${imageDataUrl}" alt="Poster" />
+                    <div class="instruction">
+                        📸 Long-press the image → Save Image<br>
+                        Or tap the browser menu → Download Image
+                    </div>
+                </body>
+                </html>
+            `);
+            newTab.document.close();
+            alert('✅ Poster opened in new tab.\n\nLong-press the image and choose "Save Image".');
+        } else {
+            // Fallback if popup blocked: try share or direct download
+            if (navigator.share) {
+                const blob = await (await fetch(imageDataUrl)).blob();
+                const file = new File([blob], 'GLD_Poster.png', { type: 'image/png' });
+                await navigator.share({
+                    title: 'GLD School Poster',
+                    files: [file]
+                });
+            } else {
+                // Last resort: use download attribute (might work on some)
+                const link = document.createElement('a');
+                link.download = 'GLD_Poster.png';
+                link.href = imageDataUrl;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                alert('If download does not start, please long-press the image in the new tab.');
+            }
+        }
     } catch (error) {
         console.error('Poster generation error:', error);
-        alert('Failed to generate poster. Please check:\n- Logo file exists (gldlogo.png)\n- Image upload works\n- Try again with a smaller photo');
+        alert('Failed to generate poster.\n\nPossible causes:\n- Logo file missing (gldlogo.png)\n- Image too large\n- Try refreshing the page');
     } finally {
         downloadBtn.innerHTML = originalText;
         downloadBtn.disabled = false;
@@ -400,4 +266,4 @@ window.addEventListener('resize', () => {
 resetPhotoToPlaceholder();
 initPlaceholderStyle();
 initDarkMode();
-console.log("✅ Poster app ready — Multiple save methods available.");
+console.log("✅ Poster app ready — Opens image in new tab for easy saving.");
